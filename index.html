@@ -284,6 +284,7 @@ body.hide-pending .pending, body.hide-pending .try { display: none !important; }
 #s3 { flex-direction: row !important; gap: 110px !important; padding: 70px 160px 90px !important; }
 #s3 .video-box.vertical { aspect-ratio: 9/16; height: 860px; width: auto; flex: none; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
 #s3 .video-box.vertical video { object-fit: cover; }
+.video-box video:fullscreen, .video-box video:-webkit-full-screen { object-fit: contain !important; width: 100% !important; height: 100% !important; background: #000; }
 #s3 .vt { font-family: "Manrope"; font-weight: 700; font-size: 64px; line-height: 1.12; text-align: left; max-width: 760px; }
 #s3 .vt span { display: block; }
 #s3 .vt span { color: var(--noa-coral); }

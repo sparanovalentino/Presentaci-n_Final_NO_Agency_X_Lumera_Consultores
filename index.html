@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NO Agency × Lumera Consultores — Propuesta de Marketing Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<style>
+/* =========================================================
+   NO Agency × Lumera Consultores — Presentación final
+   Dos sistemas visuales independientes:
+   .noa  → identidad NO Agency (manual v2.0)
+   .lum  → identidad Lumera (sistema aprobado 27/08/2026)
+   ========================================================= */
+
+@font-face { font-family: "Lora"; src: url("assets/fonts/lora-latin-wght-normal.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Lora"; src: url("assets/fonts/lora-latin-wght-italic.woff2") format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("assets/fonts/source-sans-3-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("assets/fonts/manrope-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+:root {
+  /* NO Agency */
+  --noa-indigo: #22284F;
+  --noa-coral: #F25C3E;
+  --noa-arena: #E8DFCB;
+  --noa-niebla: #AAB4CE;
+  --noa-grafito: #201E1B;
+  --noa-hueso: #F7F3EC;
+  /* Lumera */
+  --lum-azul: #173B57;
+  --lum-petroleo: #2F6F6A;
+  --lum-salvia: #8FAF9F;
+  --lum-marfil: #F4F0E8;
+  --lum-grafito: #24292D;
+  /* derivados de lectura (tintes de la paleta aprobada) */
+  --lum-salvia-12: rgba(143,175,159,.18);
+  --lum-azul-08: rgba(23,59,87,.08);
+  --lum-line: rgba(36,41,45,.16);
+  --noa-line: rgba(34,40,79,.16);
+
+  --ease: cubic-bezier(.22,.7,.2,1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #0d0f14; overflow: hidden; }
+body { font-family: "Source Sans 3", "Inter", Arial, sans-serif; -webkit-font-smoothing: antialiased; color: var(--lum-grafito); }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--noa-coral); outline-offset: 3px; }
+
+/* ---------- Escenario 16:9 escalable ---------- */
+#viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+#stage {
+  width: 1920px; height: 1080px; position: absolute; left: 50%; top: 50%;
+  transform-origin: center center; overflow: hidden;
+  background: var(--lum-marfil);
+}
+
+.slide {
+  position: absolute; inset: 0; padding: 104px 128px 150px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .55s var(--ease), visibility 0s linear .55s;
+}
+.slide.active { opacity: 1; visibility: visible; transition: opacity .55s var(--ease), visibility 0s; z-index: 2; }
+.slide .notes { display: none; }
+
+/* Entrada escalonada de elementos */
+.slide [data-in] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.slide.active [data-in] { opacity: 1; transform: none; }
+.slide.active [data-in="1"] { transition-delay: .08s; }
+.slide.active [data-in="2"] { transition-delay: .18s; }
+.slide.active [data-in="3"] { transition-delay: .28s; }
+.slide.active [data-in="4"] { transition-delay: .38s; }
+.slide.active [data-in="5"] { transition-delay: .48s; }
+.slide.active [data-in="6"] { transition-delay: .58s; }
+.slide.active [data-in="7"] { transition-delay: .68s; }
+
+/* =================== TEMA NO AGENCY =================== */
+.noa { font-family: "Inter", Arial, sans-serif; color: var(--noa-grafito); background: var(--noa-hueso); }
+.noa.dark { background: var(--noa-indigo); color: var(--noa-hueso); }
+.noa h1, .noa h2, .noa h3, .noa .display { font-family: "Manrope", "Inter", Arial, sans-serif; letter-spacing: -.02em; }
+.noa .eyebrow { font-family: "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .18em; text-transform: uppercase; color: var(--noa-coral); }
+.noa.dark .muted { color: var(--noa-niebla); }
+.noa .muted { color: #5a5866; }
+
+/* =================== TEMA LUMERA =================== */
+.lum { background: var(--lum-marfil); color: var(--lum-grafito); }
+.lum h1, .lum h2, .lum h3, .lum .display { font-family: "Lora", Georgia, serif; color: var(--lum-azul); font-weight: 600; letter-spacing: -.01em; }
+.lum .eyebrow { font-family: "Source Sans 3", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .16em; text-transform: uppercase; color: var(--lum-petroleo); }
+.lum .muted { color: #59626a; }
+.lum.deep { background: var(--lum-azul); color: var(--lum-marfil); }
+.lum.deep h1, .lum.deep h2, .lum.deep h3 { color: var(--lum-marfil); }
+
+/* Tipografía común de diapositiva */
+.title { font-size: 66px; line-height: 1.08; max-width: 1500px; }
+.title.sm { font-size: 54px; }
+.lead { font-size: 30px; line-height: 1.4; max-width: 1300px; }
+.body { font-size: 26px; line-height: 1.45; }
+.small { font-size: 21px; line-height: 1.4; }
+.tiny { font-size: 18px; line-height: 1.35; }
+.head { display: flex; flex-direction: column; gap: 18px; margin-bottom: 44px; }
+
+/* ---------- Sello de simulación ---------- */
+.sim-badge {
+  position: absolute; top: 40px; right: 128px; z-index: 5;
+  display: inline-flex; align-items: center; gap: 12px;
+  font: 600 19px/1 "Source Sans 3", sans-serif; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--lum-azul); background: var(--lum-marfil);
+  border: 2px dashed var(--lum-azul); padding: 12px 18px; border-radius: 6px;
+}
+.sim-badge::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--lum-petroleo); }
+
+/* ---------- Etiquetas de estado (dato / decisión / propuesta) ---------- */
+.tag { display: inline-block; font: 600 16px/1 "Source Sans 3", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 8px 12px; border-radius: 4px; }
+.tag.confirmado { background: var(--lum-azul); color: var(--lum-marfil); }
+.tag.decision { background: var(--lum-petroleo); color: var(--lum-marfil); }
+.tag.propuesta { background: transparent; color: var(--lum-petroleo); border: 2px solid var(--lum-petroleo); }
+.tag.futuro { background: transparent; color: var(--lum-azul); border: 2px dashed var(--lum-azul); }
+.tag.sim { background: transparent; color: var(--lum-azul); border: 2px dashed var(--lum-azul); }
+
+/* =================== CROMO (navegación) =================== */
+#chrome { position: absolute; left: 0; right: 0; bottom: 0; height: 96px; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 0 56px; pointer-events: none; }
+#chrome > * { pointer-events: auto; }
+#rail { flex: 1; display: flex; gap: 6px; align-items: flex-end; height: 48px; }
+.rail-step { flex: 1; display: flex; flex-direction: column; gap: 8px; cursor: pointer; background: none; border: 0; text-align: left; padding: 0; color: inherit; }
+.rail-step .lbl { font: 600 15px/1 "Source Sans 3", sans-serif; letter-spacing: .06em; text-transform: uppercase; opacity: .45; white-space: nowrap; transition: opacity .3s; }
+.rail-step .bar { height: 4px; border-radius: 2px; background: currentColor; opacity: .18; position: relative; overflow: hidden; }
+.rail-step .bar i { position: absolute; inset: 0; width: 0; background: currentColor; opacity: 1; transition: width .45s var(--ease); }
+.rail-step.done .bar { opacity: .55; }
+.rail-step.current .lbl { opacity: 1; }
+.rail-step.current .bar { opacity: .3; }
+.rail-step.current .bar i, .rail-step.done .bar i { background: var(--accent); }
+.rail-step.done .bar i { width: 100%; }
+
+#counter { font: 600 20px/1 "Source Sans 3", sans-serif; letter-spacing: .04em; min-width: 92px; text-align: right; font-variant-numeric: tabular-nums; }
+.ctrl { display: flex; gap: 8px; }
+.ctrl button { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid currentColor; background: transparent; color: inherit; display: grid; place-items: center; opacity: .7; transition: opacity .2s, background .2s; }
+.ctrl button:hover { opacity: 1; }
+.ctrl button svg { width: 22px; height: 22px; }
+.ctrl button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; opacity: 1; }
+
+body[data-chrome="light"] #chrome { color: var(--noa-hueso); --accent: var(--noa-coral); }
+body[data-chrome="noa"] #chrome { color: var(--noa-indigo); --accent: var(--noa-coral); }
+body[data-chrome="lum"] #chrome { color: var(--lum-azul); --accent: var(--lum-petroleo); }
+body[data-chrome="lumlight"] #chrome { color: var(--lum-marfil); --accent: var(--lum-salvia); }
+
+#timer { font: 600 20px/1 "Source Sans 3", sans-serif; font-variant-numeric: tabular-nums; min-width: 70px; display: none; }
+body.timing #timer { display: block; }
+
+/* ---------- Panel de notas ---------- */
+#notes {
+  position: fixed; right: 0; top: 0; bottom: 0; width: min(560px, 92vw); z-index: 50;
+  background: #15171c; color: #e9e6df; padding: 28px 30px 40px; overflow-y: auto;
+  transform: translateX(105%); transition: transform .35s var(--ease);
+  font-family: "Source Sans 3", sans-serif; box-shadow: -20px 0 50px rgba(0,0,0,.35);
+}
+body.notes-open #notes { transform: none; }
+#notes h4 { font: 600 13px/1.2 "Source Sans 3", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #8FAF9F; margin: 22px 0 8px; }
+#notes .n-title { font: 600 26px/1.2 "Lora", Georgia, serif; color: #fff; margin-top: 6px; }
+#notes .n-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+#notes .n-meta span { background: #262a31; border-radius: 4px; padding: 6px 10px; font-size: 15px; }
+#notes p, #notes li { font-size: 17px; line-height: 1.5; color: #d6d3cc; }
+#notes ul { padding-left: 18px; }
+#notes .n-say { color: #fff; font-size: 18px; }
+#notes .n-next { margin-top: 24px; padding-top: 16px; border-top: 1px solid #2d3139; font-size: 15px; color: #a7a39b; }
+#notes .n-close { position: absolute; right: 18px; top: 18px; background: none; border: 1px solid #444; color: #ccc; border-radius: 4px; padding: 6px 10px; font-size: 14px; }
+#notes .n-sim { margin-top: 12px; border: 1px dashed #8FAF9F; color: #cfe0d6; padding: 8px 10px; border-radius: 4px; font-size: 15px; }
+#notes .n-time { font-variant-numeric: tabular-nums; }
+
+/* ---------- Índice / vista general ---------- */
+#overview { position: fixed; inset: 0; z-index: 60; background: rgba(13,15,20,.97); display: none; overflow-y: auto; padding: 40px 48px 60px; color: #eee; font-family: "Source Sans 3", sans-serif; }
+body.overview-open #overview { display: block; }
+#overview header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px; }
+#overview header h3 { font: 600 28px "Lora", serif; }
+#overview header p { color: #aaa; font-size: 16px; }
+#ov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.ov-item { background: #1d2027; border: 1px solid #2b2f37; border-radius: 6px; padding: 16px 18px; text-align: left; color: #eee; display: flex; flex-direction: column; gap: 8px; min-height: 128px; }
+.ov-item:hover, .ov-item.cur { border-color: #8FAF9F; }
+.ov-item .ov-n { font-size: 14px; color: #8FAF9F; letter-spacing: .1em; text-transform: uppercase; }
+.ov-item .ov-t { font: 600 19px/1.25 "Lora", serif; }
+.ov-item .ov-d { font-size: 14px; color: #9a978f; margin-top: auto; display: flex; justify-content: space-between; }
+#ov-total { color: #cfe0d6; }
+
+/* ---------- Ayuda de teclado ---------- */
+#hint { position: fixed; left: 50%; top: 22px; transform: translateX(-50%); z-index: 40; background: rgba(21,23,28,.92); color: #ddd; font: 15px/1.3 "Source Sans 3", sans-serif; padding: 10px 16px; border-radius: 6px; opacity: 0; transition: opacity .4s; pointer-events: none; }
+#hint.show { opacity: 1; }
+#hint kbd { background: #333; border-radius: 3px; padding: 1px 6px; margin: 0 2px; font-family: inherit; }
+
+/* =================== COMPONENTES =================== */
+
+/* Video */
+.video-box { position: relative; background: #0f1216; border-radius: 10px; overflow: hidden; aspect-ratio: 16/9; }
+.video-box video { width: 100%; height: 100%; display: block; background: #000; }
+.video-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 40px; }
+.video-ph .vp-ico { width: 96px; height: 96px; border-radius: 50%; border: 2px solid currentColor; display: grid; place-items: center; opacity: .8; }
+.video-ph .vp-ico svg { width: 36px; height: 36px; margin-left: 6px; }
+.video-ph .vp-name { font-size: 34px; font-weight: 600; }
+.video-ph .vp-file { font: 500 20px/1.4 ui-monospace, Menlo, Consolas, monospace; opacity: .75; }
+.video-ph .vp-note { font-size: 20px; opacity: .7; max-width: 760px; }
+.video-ph label { margin-top: 6px; font-size: 18px; border: 1.5px solid currentColor; border-radius: 999px; padding: 10px 20px; cursor: pointer; opacity: .85; }
+.video-ph label:hover { opacity: 1; }
+.video-ph input { display: none; }
+.video-box.has-video .video-ph { display: none; }
+.video-fs { position: absolute; right: 16px; top: 16px; z-index: 3; background: rgba(0,0,0,.55); color: #fff; border: 0; border-radius: 6px; padding: 8px 12px; font-size: 16px; display: none; }
+.video-box.has-video .video-fs { display: block; }
+.noa .video-box { background: #1a1f40; color: var(--noa-hueso); box-shadow: 0 0 0 2px rgba(247,243,236,.12) inset; }
+.lum .video-box { background: var(--lum-azul); color: var(--lum-marfil); }
+
+/* Barras SVG animadas */
+.grow { transform-origin: left center; transform: scaleX(0); transition: transform 1s var(--ease); }
+.growv { transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); transition: transform 1s var(--ease); }
+.slide.active .grow { transform: scaleX(1); }
+.slide.active .growv { transform: scaleY(1); }
+.slide.active .d1 { transition-delay: .15s; } .slide.active .d2 { transition-delay: .25s; } .slide.active .d3 { transition-delay: .35s; }
+.slide.active .d4 { transition-delay: .45s; } .slide.active .d5 { transition-delay: .55s; } .slide.active .d6 { transition-delay: .65s; } .slide.active .d7 { transition-delay: .75s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide [data-in], .grow, .growv, #notes, .wipe { transition: none !important; animation: none !important; }
+  .grow { transform: scaleX(1); } .growv { transform: scaleY(1); }
+}
+
+/* =====================================================================
+   v3 · Propuesta final — composición editorial, una idea por diapositiva
+   ===================================================================== */
+.slide { padding: 104px 140px 156px; }
+.title { font-size: 68px; line-height: 1.06; margin-top: 16px; max-width: 1560px; }
+.title.sm { font-size: 56px; line-height: 1.1; }
+.ph { font: 700 17px/1.3 "Source Sans 3", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #6b737a; margin-bottom: 14px; }
+.noa .ph { font-family: "Inter"; color: #5a5866; }
+.ring { transition: stroke-dashoffset 1.4s var(--ease); }
+.slide.active .ring { stroke-dashoffset: var(--off) !important; }
+.slide.active .pie-slice { opacity: 1 !important; }
+@media (prefers-reduced-motion: reduce) { .pie-slice { opacity: 1 !important; transition: none !important; } .ring { transition: none !important; } }
+
+/* --- Recursos pendientes: avisos discretos y removibles (tecla P) --- */
+.pending { position: absolute; left: 18px; bottom: 16px; z-index: 3; font: 600 14px/1 "Source Sans 3", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 8px 10px; border-radius: 4px; background: rgba(0,0,0,.35); color: rgba(255,255,255,.85); }
+.pending code { font: 500 13px ui-monospace, Menlo, Consolas, monospace; text-transform: none; letter-spacing: 0; margin-left: 6px; opacity: .85; }
+body.hide-pending .pending, body.hide-pending .try { display: none !important; }
+.video-ph { gap: 20px; }
+.video-ph .vp-ico { width: 110px; height: 110px; border-width: 2px; }
+.video-ph .vp-name { font-size: 30px; font-weight: 600; }
+.video-ph .try { position: absolute; right: 18px; bottom: 14px; font-size: 14px; border: 1px solid currentColor; border-radius: 999px; padding: 6px 12px; opacity: .6; cursor: pointer; }
+.video-ph .try:hover { opacity: 1; }
+.video-ph .try input { display: none; }
+.video-box.has-poster { background-size: cover; background-position: center top; }
+.video-box.has-poster .video-ph { background: linear-gradient(180deg, rgba(23,59,87,.72), rgba(23,59,87,.92)); color: var(--lum-marfil); }
+.noa .video-box { background: #1b2045; }
+.slot { position: relative; width: 100%; height: 100%; display: grid; place-items: center; overflow: hidden; border-radius: 6px; }
+.slot img { max-width: 86%; max-height: 86%; object-fit: contain; }
+.slot.empty { border: 2px dashed rgba(36,41,45,.25); background: rgba(36,41,45,.035); }
+.slot.empty .slot-name { font: 600 24px/1.3 "Lora", serif; color: #8a8d8f; text-align: center; padding: 0 30px; }
+.slot.empty .pending { background: rgba(36,41,45,.08); color: #6b6a66; }
+
+
+/* =====================================================================
+   v4 · diapositivas
+   ===================================================================== */
+.legend { display: flex; gap: 26px; font-size: 18px; color: #4b5157; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
+.wm { position: absolute; right: -120px; bottom: -160px; width: 900px; opacity: .07; pointer-events: none; }
+.lum.deep .wm { opacity: .12; filter: brightness(2.2) saturate(.4); }
+
+/* S1 */
+#s1 { display: flex; flex-direction: column; justify-content: space-between; padding: 110px 140px 180px; }
+#s1 .logo { width: 480px; }
+#s1 .display { font-weight: 700; letter-spacing: -.03em; line-height: 1.02; }
+#s1 .display span { display: block; font-size: 120px; color: var(--noa-hueso); }
+#s1 .display em { display: block; font-style: normal; font-size: 120px; color: var(--noa-coral); }
+#s1 .team { font-size: 24px; color: var(--noa-niebla); border-top: 1px solid rgba(170,180,206,.3); padding-top: 26px; }
+
+/* S2 */
+#s2 .title { color: var(--noa-indigo); font-size: 76px; max-width: 1400px; }
+#s2 .disc { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 96px; position: relative; }
+#s2 .disc::before { content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 3px; background: var(--noa-indigo); }
+#s2 .disc div { position: relative; padding: 54px 30px 0 0; }
+#s2 .disc div::before { content: ""; position: absolute; left: 0; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--noa-hueso); border: 4px solid var(--noa-coral); }
+#s2 .disc b { display: block; font-family: "Manrope"; font-size: 38px; color: var(--noa-indigo); letter-spacing: -.01em; }
+#s2 .disc span { display: block; font-size: 23px; color: #5a5866; margin-top: 8px; line-height: 1.35; }
+#s2 .ia { margin-top: 100px; font-size: 32px; line-height: 1.35; color: #3f3d44; max-width: 1400px; }
+#s2 .ia span { font-family: "Manrope"; font-weight: 700; color: var(--noa-coral); }
+
+/* S3 */
+#s3 { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; padding-top: 64px; }
+#s3 { flex-direction: row !important; gap: 110px !important; padding: 70px 160px 90px !important; }
+#s3 .video-box.vertical { aspect-ratio: 9/16; height: 860px; width: auto; flex: none; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+#s3 .video-box.vertical video { object-fit: cover; }
+#s3 .vt { font-family: "Manrope"; font-weight: 700; font-size: 64px; line-height: 1.12; text-align: left; max-width: 760px; }
+#s3 .vt span { display: block; }
+#s3 .vt span { color: var(--noa-coral); }
+
+/* S4 */
+#s4 { padding: 0; }
+#s4 .wipe { position: absolute; inset: 0; background: var(--noa-indigo); z-index: 6; display: grid; place-items: center; }
+#s4 .wipe img { width: 300px; }
+#s4.active .wipe { animation: wipeOut 1.5s .35s var(--ease) forwards; }
+#s4.active .wipe img { animation: fadeOut .45s .25s forwards; }
+@keyframes wipeOut { to { transform: translateY(-100%); } }
+@keyframes fadeOut { to { opacity: 0; } }
+#s4 .inner { position: absolute; inset: 0; display: grid; grid-template-columns: 720px 1fr; }
+#s4 .id { background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 60px; }
+#s4 .mark { width: 300px; }
+#s4 .client-name { font-family: "Lora", serif; font-weight: 600; color: var(--lum-azul); font-size: 124px; line-height: 1; margin-top: 18px; }
+#s4 .client-desc { font-size: 22px; letter-spacing: .22em; text-transform: uppercase; color: var(--lum-petroleo); font-weight: 600; margin-top: 14px; }
+#s4 .sit { padding: 120px 130px 160px 100px; display: flex; flex-direction: column; justify-content: center; }
+#s4 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 50px; margin-top: 60px; }
+#s4 .facts div { border-top: 2px solid var(--lum-azul); padding-top: 16px; }
+#s4 .facts b { display: block; font-family: "Lora", serif; color: var(--lum-azul); font-size: 50px; font-weight: 600; line-height: 1.05; }
+#s4 .facts span { font-size: 22px; color: #59626a; display: block; margin-top: 6px; }
+
+/* S5 */
+#s5 .journey { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 44px; }
+#s5 .j { text-align: center; position: relative; padding-top: 96px; }
+#s5 .j::before { content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 48px; height: 48px; border-radius: 50%; background: var(--lum-azul); }
+#s5 .j::after { content: ""; position: absolute; top: 52px; left: calc(50% + 36px); width: calc(100% - 72px); height: 4px; background: var(--lum-azul); }
+#s5 .j:last-child::after { display: none; }
+#s5 .j.broken::before { background: var(--lum-marfil); border: 4px dashed var(--lum-petroleo); width: 72px; height: 72px; top: 18px; }
+#s5 .j.broken::after { background: repeating-linear-gradient(90deg, var(--lum-petroleo) 0 12px, transparent 12px 22px); }
+#s5 .j.faded { opacity: .55; }
+#s5 .j b { display: block; font-family: "Lora", serif; font-size: 36px; color: var(--lum-azul); font-weight: 600; }
+#s5 .j span { display: block; font-size: 21px; color: #59626a; margin-top: 4px; }
+#s5 .j.broken b, #s5 .j.broken span { color: var(--lum-petroleo); }
+#s5 .bench { margin-top: 56px; }
+.bt { display: grid; grid-template-columns: 300px repeat(6, 1fr); background: #fff; border-radius: 10px; overflow: hidden; }
+.bt > span { padding: 13px 10px; text-align: center; font-size: 20px; border-bottom: 1px solid var(--lum-line); display: flex; align-items: center; justify-content: center; }
+.bt > span.rh { justify-content: flex-start; padding-left: 26px; font-weight: 600; color: var(--lum-grafito); }
+.bt > span.ch { font: 700 15px "Source Sans 3"; letter-spacing: .1em; text-transform: uppercase; color: #6b737a; background: rgba(23,59,87,.04); }
+.bt > span.lu { background: var(--lum-azul); color: var(--lum-marfil); }
+.bt > span.ch.lu { color: var(--lum-marfil); }
+.bt .y { width: 26px; height: 26px; border-radius: 50%; background: var(--lum-petroleo); display: grid; place-items: center; color: #fff; font-size: 16px; }
+.bt .n { width: 22px; height: 3px; background: #c5c9c6; border-radius: 2px; }
+.bt .lu .n { background: rgba(244,240,232,.45); }
+.bt > span:nth-last-child(-n+7) { border-bottom: 0; }
+
+/* S6 */
+#s6 .ba { display: grid; grid-template-columns: 1fr 1.2fr 1.3fr; gap: 22px; height: 500px; margin-top: 30px; }
+#s6 .pane { position: relative; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+#s6 .pane figcaption { position: absolute; top: 22px; left: 26px; z-index: 2; font: 700 16px "Source Sans 3"; letter-spacing: .18em; text-transform: uppercase; }
+#s6 .before { background: #e7e1d6; padding: 70px 30px 30px; }
+#s6 .before figcaption { color: #6b6a66; }
+#s6 .before .slot { flex: 1; min-height: 0; background: #fff; }
+#s6 .before .slot img { max-width: 78%; max-height: 92%; }
+#s6 .before .brief { margin-top: 16px; }
+#s6 .swatches.old { height: 34px; }
+#s6 .before .src { margin-top: 12px; font: 700 13px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: #6b6a66; }
+#s6 .before ul { list-style: none; margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+#s6 .before li { font-size: 19px; color: #3f454a; padding-left: 18px; position: relative; line-height: 1.3; }
+#s6 .before li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: #B07A3C; }
+#s6 .after { background: #fff; padding: 64px 40px 32px; align-items: center; }
+#s6 .after figcaption { color: var(--lum-petroleo); }
+#s6 .after .sym { width: 240px; }
+#s6 .after .sys { width: 100%; margin-top: auto; }
+#s6 .swatches { display: flex; height: 58px; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px rgba(36,41,45,.08); }
+#s6 .swatches i { flex: 1; }
+#s6 .ty { margin-top: 14px; display: flex; align-items: baseline; gap: 12px; }
+#s6 .ty .a { font-family: "Lora", serif; font-size: 44px; color: var(--lum-azul); font-weight: 600; }
+#s6 .ty .b { font-family: "Source Sans 3"; font-size: 28px; color: var(--lum-grafito); }
+#s6 .inuse { background: var(--lum-azul); padding: 64px 22px 22px; }
+#s6 .inuse figcaption { color: var(--lum-salvia); }
+#s6 .inuse img { width: 100%; height: 100%; object-fit: cover; object-position: left top; border-radius: 6px; }
+#s6 .caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 46px; margin-top: 30px; }
+#s6 .caps p { font-size: 20px; color: #4b5157; line-height: 1.45; }
+#s6 .caps b { display: block; font-family: "Lora", serif; font-size: 26px; color: var(--lum-azul); margin-bottom: 6px; }
+
+/* S7 */
+#s7 .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 50px; }
+#s7 .pc { background: #fff; border-radius: 10px; display: flex; flex-direction: column; min-height: 540px; overflow: hidden; position: relative; }
+#s7 .pc::before { counter-increment: d; content: "0" counter(d); position: absolute; right: 26px; top: 20px; font: 600 64px "Lora", serif; color: rgba(23,59,87,.08); }
+#s7 .grid4 { counter-reset: d; }
+#s7 .pc .pr { padding: 38px 32px 14px; font-family: "Lora", serif; font-size: 34px; line-height: 1.15; color: var(--lum-azul); font-weight: 600; min-height: 190px; }
+#s7 .pc .pr::before { content: "Desafío"; display: block; font: 700 15px "Source Sans 3"; letter-spacing: .16em; text-transform: uppercase; color: var(--lum-petroleo); margin-bottom: 14px; }
+#s7 .pc .ev { padding: 18px 32px 28px; font-size: 22px; line-height: 1.4; color: #4b5157; flex: 1; border-top: 1px dashed var(--lum-line); }
+#s7 .pc .so { background: var(--lum-azul); color: var(--lum-marfil); padding: 20px 32px; font-size: 21px; font-weight: 600; }
+#s7 .pc .so::before { content: "Respuesta · "; color: var(--lum-salvia); font-weight: 400; }
+
+/* S8 */
+#s8 { display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+#s8 .eyebrow { color: var(--lum-salvia); }
+#s8 .pv { font-family: "Lora", serif; font-weight: 500; color: var(--lum-marfil); font-size: 78px; line-height: 1.14; max-width: 1580px; margin-top: 30px; letter-spacing: -.01em; position: relative; }
+#s8 .pv em { font-style: italic; color: var(--lum-salvia); }
+#s8 .aud { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 76px; position: relative; }
+#s8 .aud div { border-top: 3px solid var(--lum-salvia); padding-top: 16px; }
+#s8 .aud b { display: block; font-family: "Lora", serif; font-size: 32px; color: var(--lum-marfil); font-weight: 600; }
+#s8 .aud span { font-size: 23px; color: rgba(244,240,232,.78); display: block; margin-top: 6px; }
+
+/* S9 · buyer personas */
+#s9 .bp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 44px; }
+#s9 article { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-height: 600px; }
+#s9 article header { padding: 30px 32px 28px; color: var(--lum-marfil); position: relative; }
+#s9 .b1 header, #s9 .b2 header { background: var(--lum-azul); }
+#s9 .b3 header { background: var(--lum-petroleo); }
+#s9 .role { display: inline-block; font: 700 14px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; background: var(--lum-marfil); color: var(--lum-azul); padding: 7px 12px; border-radius: 999px; }
+#s9 .b3 .role { color: var(--lum-petroleo); }
+#s9 header b { display: block; font-family: "Lora", serif; font-size: 64px; line-height: 1; margin-top: 18px; }
+#s9 header .who { display: block; font-size: 19px; line-height: 1.38; margin-top: 12px; opacity: .88; }
+#s9 blockquote { padding: 30px 32px 10px; font-family: "Lora", serif; font-style: italic; font-size: 26px; line-height: 1.32; color: var(--lum-azul); flex: 1; }
+#s9 .b3 blockquote { color: var(--lum-petroleo); }
+#s9 article p { padding: 18px 32px 28px; font-size: 21px; color: #3f454a; line-height: 1.35; border-top: 1px dashed var(--lum-line); margin: 0 0; }
+#s9 article p small { display: block; font: 700 14px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); margin-bottom: 4px; }
+
+/* S10 · objetivos */
+#s10 .objs { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 46px; }
+#s10 .obj { background: #fff; border-radius: 12px; padding: 40px 44px; display: flex; flex-direction: column; }
+#s10 .obj + .obj { background: var(--lum-azul); color: var(--lum-marfil); }
+#s10 .obj .k { font-size: 19px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--lum-petroleo); }
+#s10 .obj + .obj .k { color: var(--lum-salvia); }
+#s10 .obj .goal { font-family: "Lora", serif; color: var(--lum-azul); font-size: 150px; line-height: .95; font-weight: 600; margin: 18px 0 22px; letter-spacing: -.02em; display: flex; align-items: baseline; gap: 18px; }
+#s10 .obj + .obj .goal { color: var(--lum-marfil); }
+#s10 .obj .goal small { font-size: 40px; font-weight: 500; letter-spacing: 0; }
+#s10 .obj .full { font-size: 24px; line-height: 1.45; color: #3f454a; border-top: 1px solid var(--lum-line); padding-top: 20px; }
+#s10 .obj + .obj .full { color: rgba(244,240,232,.88); border-top-color: rgba(244,240,232,.2); }
+
+/* S11 · sitio */
+#s11 { display: grid; grid-template-columns: 1080px 1fr; gap: 64px; align-items: center; padding-top: 96px; }
+#s11 .right h2 { font-size: 44px; line-height: 1.14; margin: 14px 0 30px; }
+#s11 .routes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#s11 .routes figure { border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(23,59,87,.10); }
+#s11 .routes img { width: 100%; display: block; }
+#s11 .routes figcaption { padding: 13px 14px; font-size: 19px; font-weight: 600; color: var(--lum-marfil); }
+#s11 .routes .emp { background: var(--lum-azul); }
+#s11 .routes .pro { background: var(--lum-petroleo); }
+
+/* S12 · SEO */
+#s12 .seo { display: grid; grid-template-columns: 1.35fr .9fr .75fr; gap: 34px; margin-top: 40px; align-items: start; }
+#s12 .lane { display: flex; flex-direction: column; gap: 16px; }
+#s12 .q { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 999px; padding: 15px 26px; font-size: 24px; color: var(--lum-grafito); box-shadow: 0 6px 20px rgba(23,59,87,.10); }
+#s12 .q svg { width: 24px; height: 24px; color: #8a9094; flex: none; }
+#s12 figure { border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(23,59,87,.12); height: 420px; background: #fff; }
+#s12 figure img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+#s12 figure.phone { background: transparent; box-shadow: none; display: grid; place-items: center; }
+#s12 figure.phone img { width: auto; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 22px rgba(23,59,87,.18)); }
+#s12 .path { display: flex; align-items: center; gap: 10px; font-size: 20px; flex-wrap: wrap; }
+#s12 .path span { background: #fff; border-radius: 999px; padding: 7px 14px; color: #3f454a; }
+#s12 .path i { font-style: normal; color: var(--lum-petroleo); }
+#s12 .path b { border-radius: 999px; padding: 7px 16px; color: var(--lum-marfil); }
+#s12 .emp .path b { background: var(--lum-azul); }
+#s12 .pro .path b { background: var(--lum-petroleo); }
+#s12 .side { display: flex; flex-direction: column; gap: 26px; padding-top: 8px; }
+#s12 .side div { border-top: 3px solid var(--lum-azul); padding-top: 14px; }
+#s12 .side b { display: block; font-family: "Lora", serif; font-size: 60px; color: var(--lum-azul); font-weight: 600; line-height: 1; }
+#s12 .side span { display: block; font-size: 20px; color: #4b5157; margin-top: 8px; line-height: 1.35; }
+
+/* S13 · redes */
+.nets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 44px; }
+.net { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-height: 620px; }
+.net .top { padding: 24px 24px 22px; color: var(--lum-marfil); position: relative; }
+.net .pri { position: absolute; right: 20px; top: 14px; font: 600 70px/1 "Lora", serif; opacity: .25; }
+.net .nm { font-family: "Lora", serif; font-size: 34px; font-weight: 600; }
+.net .fn { font-size: 18px; margin-top: 6px; opacity: .9; }
+.net .row { padding: 14px 24px; border-bottom: 1px dashed var(--lum-line); }
+.net .row small { display: block; font: 700 13px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); margin-bottom: 4px; }
+.net .row span { font-size: 19px; color: #3f454a; line-height: 1.32; display: block; }
+.net .row:last-child { border-bottom: 0; margin-top: auto; background: rgba(23,59,87,.04); }
+.net .row .fq { font-family: "Lora", serif; font-size: 26px; color: var(--lum-azul); font-weight: 600; }
+
+/* S14 · publicidad */
+.ads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 44px; }
+.ad { background: #fff; border-radius: 12px; padding: 26px 26px 24px; display: flex; flex-direction: column; gap: 12px; min-height: 470px; }
+.ad .pl { font: 700 15px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); }
+.ad .nm { font-family: "Lora", serif; font-size: 32px; color: var(--lum-azul); font-weight: 600; line-height: 1.1; }
+.ad .usd { font-family: "Lora", serif; font-size: 54px; color: var(--lum-azul); font-weight: 600; line-height: 1; margin-top: 6px; }
+.ad .usd small { font: 500 17px "Source Sans 3"; color: #6b737a; margin-left: 6px; }
+.ad .it { font-size: 19px; color: #3f454a; line-height: 1.35; border-top: 1px dashed var(--lum-line); padding-top: 10px; }
+.ad .it small { display: block; font: 700 13px "Source Sans 3"; letter-spacing: .12em; text-transform: uppercase; color: #8a9094; margin-bottom: 2px; }
+.ad .wk { margin-top: auto; display: grid; grid-template-columns: repeat(13, 1fr); gap: 3px; }
+.ad .wk i { height: 14px; border-radius: 2px; background: rgba(23,59,87,.07); }
+.ad .wk i.on { background: var(--lum-azul); }
+.ad .wkl { display: flex; justify-content: space-between; font-size: 14px; color: #8a9094; }
+.ads-note { margin-top: 26px; display: flex; gap: 40px; align-items: center; font-size: 20px; color: #4b5157; }
+.ads-note b { font-family: "Lora", serif; color: var(--lum-azul); font-size: 24px; }
+
+/* Bloque 3 · lectura y decisión */
+.read { position: absolute; left: 140px; right: 140px; bottom: 132px; display: grid; grid-template-columns: 1fr 1fr; border-radius: 8px; overflow: hidden; }
+.read p { padding: 16px 24px; font-size: 20px; line-height: 1.38; }
+.read p:first-child { background: #fff; color: #3f454a; }
+.read p:last-child { background: var(--lum-azul); color: var(--lum-marfil); }
+.read b { display: block; font: 700 14px "Source Sans 3"; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+.read p:first-child b { color: var(--lum-petroleo); }
+.read p:last-child b { color: var(--lum-salvia); }
+
+/* S15 · resultados redes */
+.rnets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 30px; }
+.rn { background: #fff; border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; gap: 4px; border-top: 6px solid var(--lum-salvia); }
+.rn.co { border-top-color: var(--lum-azul); }
+.rn .nm { font-family: "Lora", serif; font-size: 28px; color: var(--lum-azul); font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; }
+.rn .nm small { font: 700 13px "Source Sans 3"; letter-spacing: .12em; text-transform: uppercase; color: var(--lum-petroleo); }
+.rn .zone { font: 700 12px "Source Sans 3"; letter-spacing: .16em; text-transform: uppercase; color: #8a9094; margin-top: 12px; }
+.rn .zone.z2 { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--lum-line); }
+.rn .kl { font-size: 18px; color: #3f454a; line-height: 1.25; min-height: 46px; }
+.rn .big { font-family: "Lora", serif; font-size: 60px; line-height: 1; color: var(--lum-petroleo); font-weight: 600; margin-top: 4px; }
+.rn.co .big { color: var(--lum-azul); }
+.rn .bl { font-size: 16px; color: #59626a; }
+.rn .sm { display: flex; justify-content: space-between; font-size: 17px; color: #3f454a; padding-top: 6px; }
+.rn .sm b { color: var(--lum-azul); }
+#s15 .read, #s15p .read { margin-top: 26px; }
+#s15p .pads { display: grid; grid-template-columns: 1.15fr 1fr 1fr 1fr; gap: 20px; margin-top: 34px; }
+#s15p .pad { background: #fff; border-radius: 12px; padding: 24px 26px; display: flex; flex-direction: column; gap: 3px; border-top: 6px solid var(--lum-petroleo); }
+#s15p .pad.warn { border-top-color: #B08A4E; }
+#s15p .pad .nm { font-family: "Lora", serif; font-size: 30px; color: var(--lum-azul); font-weight: 600; }
+#s15p .pad .fn { font: 700 12px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); }
+#s15p .pad .val { font-family: "Lora", serif; font-size: 64px; color: var(--lum-azul); font-weight: 600; line-height: 1; margin-top: 18px; }
+#s15p .pad.warn .val { color: #8a6d3b; }
+#s15p .pad .vl { font-size: 18px; color: #59626a; margin-bottom: 10px; }
+#s15p .pad .sm { display: flex; justify-content: space-between; font-size: 18px; color: #3f454a; border-top: 1px dashed var(--lum-line); padding: 8px 0 2px; }
+#s15p .pad .sm b { font-family: "Lora", serif; color: var(--lum-azul); font-size: 20px; }
+#s15p .pad.hero { background: var(--lum-azul); border-top-color: var(--lum-salvia); }
+#s15p .pad.hero .nm, #s15p .pad.hero .val, #s15p .pad.hero .sm b { color: var(--lum-marfil); }
+#s15p .pad.hero .fn { color: var(--lum-salvia); }
+#s15p .pad.hero .vl, #s15p .pad.hero .sm { color: rgba(244,240,232,.85); border-top-color: rgba(244,240,232,.22); }
+#s15p .ptot { display: flex; justify-content: space-between; margin-top: 18px; padding: 14px 26px; border: 1px solid var(--lum-line); border-radius: 10px; font-size: 19px; color: #3f454a; }
+#s15p .ptot b { font-family: "Lora", serif; font-size: 23px; color: var(--lum-azul); margin-right: 4px; }
+#s15p .read { margin-top: 18px; }
+
+/* S16 · resultados sitio */
+#s16 .title.sm { font-size: 50px; }
+#s16 .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; margin-top: 26px; }
+#s16 .ph .sq { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -1px; margin: 0 6px 0 10px; }
+#s16 .ph .sq.e { background: var(--lum-azul); } #s16 .ph .sq.p { background: var(--lum-salvia); }
+
+/* S17 · objetivos */
+#s17 .gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
+#s17 .gauge { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: center; background: #fff; border-radius: 14px; padding: 30px 40px; }
+#s17 .gv { position: relative; width: 300px; height: 300px; }
+#s17 .gv .c { position: absolute; inset: 0; display: grid; place-items: center; }
+#s17 .gv .c b { font-family: "Lora", serif; font-size: 70px; color: var(--lum-azul); font-weight: 600; }
+#s17 .gauge .k { font: 700 17px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); }
+#s17 .gauge .res { font-family: "Lora", serif; font-size: 64px; color: var(--lum-azul); font-weight: 600; line-height: 1.05; margin: 10px 0; }
+#s17 .gauge .res small { font-size: 28px; color: #59626a; font-weight: 500; }
+#s17 .gauge .tx { font-size: 23px; color: #4b5157; line-height: 1.35; }
+#s17 .reads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 44px; }
+#s17 .rd { border-top: 3px solid var(--lum-petroleo); padding-top: 14px; }
+#s17 .rd.warn { border-top-color: var(--lum-azul); }
+#s17 .rd b { display: block; font-family: "Lora", serif; font-size: 44px; color: var(--lum-azul); font-weight: 600; line-height: 1; }
+#s17 .rd span { font-size: 21px; color: #4b5157; line-height: 1.35; display: block; margin-top: 8px; }
+
+/* S18 · conclusión */
+#s18 { overflow: hidden; }
+#s18 .concl { display: grid; grid-template-columns: 1fr 1fr 1.15fr; gap: 28px; margin-top: 50px; position: relative; }
+#s18 .col { background: #fff; border-radius: 12px; padding: 36px 38px; min-height: 560px; }
+#s18 .col.steps { background: var(--lum-azul); color: var(--lum-marfil); }
+#s18 .col.steps .ph { color: var(--lum-salvia); }
+#s18 ul { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+#s18 ul li { font-size: 25px; color: var(--lum-grafito); padding-left: 40px; position: relative; line-height: 1.3; }
+#s18 ul.ok li::before { content: "✓"; position: absolute; left: 0; top: -1px; width: 26px; height: 26px; border-radius: 50%; background: var(--lum-azul); color: #fff; font-size: 15px; display: grid; place-items: center; }
+#s18 ul.learn li::before { content: ""; position: absolute; left: 4px; top: 10px; width: 16px; height: 16px; border-radius: 3px; background: var(--lum-salvia); transform: rotate(45deg); }
+#s18 ol { list-style: none; counter-reset: st; display: flex; flex-direction: column; gap: 20px; }
+#s18 ol li { counter-increment: st; font-size: 20px; line-height: 1.3; padding-left: 54px; position: relative; color: rgba(244,240,232,.85); }
+#s18 ol li::before { content: counter(st); position: absolute; left: 0; top: -2px; width: 36px; height: 36px; border-radius: 50%; background: var(--lum-marfil); color: var(--lum-azul); font: 600 20px "Lora", serif; display: grid; place-items: center; }
+#s18 ol li b { display: block; font-family: "Lora", serif; font-size: 25px; color: var(--lum-marfil); }
+
+/* S19 · Faro */
+#s19 { display: grid; grid-template-columns: 1fr 900px; gap: 70px; align-items: center; padding-top: 96px; }
+#s19 h2 { font-size: 46px; line-height: 1.14; margin: 14px 0 22px; }
+#s19 .fname { display: block; font-size: 108px; line-height: 1; color: var(--lum-petroleo); margin-bottom: 10px; letter-spacing: -.02em; }
+#s19 .prob { font-size: 23px; color: #4b5157; line-height: 1.45; }
+#s19 .prob b { font-family: "Lora", serif; color: var(--lum-azul); font-size: 26px; }
+#s19 .feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+#s19 .feat div { border-top: 3px solid var(--lum-petroleo); padding-top: 12px; }
+#s19 .feat b { display: block; font-family: "Lora", serif; font-size: 30px; color: var(--lum-azul); }
+#s19 .feat span { font-size: 18px; color: #4b5157; line-height: 1.35; display: block; margin-top: 4px; }
+#s19 .tagline { margin-top: 30px; }
+#s19 .stagebox { display: flex; flex-direction: column; gap: 22px; }
+#s19 .phones { display: flex; justify-content: center; gap: 18px; height: 330px; }
+#s19 .phones img { height: 100%; border-radius: 16px; box-shadow: 0 14px 30px rgba(23,59,87,.16); }
+#s19 .phones img:nth-child(2) { transform: translateY(-14px); }
+#s19 .video-box { width: 100%; }
+
+/* S20 · inversión */
+#s20 .title.sm { color: var(--noa-indigo); }
+#s20 .wrap { display: grid; grid-template-columns: 560px 1fr; gap: 80px; align-items: center; margin-top: 26px; }
+#s20 #ch-pie svg { width: 560px; height: 560px; }
+#s20 .svc { display: flex; flex-direction: column; }
+#s20 .sv { display: grid; grid-template-columns: 22px 1fr auto; gap: 18px; align-items: start; padding: 15px 0; border-bottom: 1px solid var(--noa-line); }
+#s20 .sv i { width: 20px; height: 20px; border-radius: 4px; margin-top: 6px; }
+#s20 .sv b { display: block; font-family: "Manrope"; font-size: 25px; color: var(--noa-indigo); }
+#s20 .sv span { display: block; font-size: 18.5px; color: #5a5866; margin-top: 3px; line-height: 1.35; }
+#s20 .sv em { font-style: normal; font-family: "Manrope"; font-weight: 800; font-size: 26px; color: var(--noa-indigo); white-space: nowrap; }
+#s20 .sv.direct em { color: var(--noa-coral); }
+#s20 .cond { position: absolute; left: 140px; right: 140px; bottom: 132px; font-size: 19px; color: #3f3d44; background: #fff; padding: 14px 20px; border-radius: 6px; }
+#s20 .cond b { color: var(--noa-indigo); }
+
+/* S21 · cierre */
+#s21 { display: flex; flex-direction: column; justify-content: center; gap: 46px; }
+#s21 .promise { font-family: "Manrope"; font-weight: 700; font-size: 100px; line-height: 1.02; letter-spacing: -.03em; max-width: 1600px; }
+#s21 .promise span { color: var(--noa-coral); }
+#s21 .bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
+#s21 .bottom img { width: 420px; }
+#s21 .bottom p { font-size: 26px; color: var(--noa-niebla); }
+/* ajustes v4 */
+.bt > span.rh { text-align: left; }
+#s5 .bnote { margin-top: 16px; font-size: 22px; color: var(--lum-azul); font-family: "Lora", serif; }
+#s5 .bnote b { color: var(--lum-petroleo); }
+#s9 article { min-height: 680px; }
+#s9 header b { font-size: 72px; }
+#s9 header .who { font-size: 21px; }
+#s9 blockquote { font-size: 30px; padding-top: 34px; }
+#s9 article p { font-size: 23px; }
+#s10 .objs { margin-top: 56px; }
+#s10 .obj { min-height: 560px; padding: 46px 50px; }
+#s10 .obj .full { font-size: 26px; }
+#s12 .seo { grid-template-columns: 1.3fr 1fr .7fr; gap: 30px; }
+#s12 .path { font-size: 19px; gap: 8px; }
+.net { min-height: 640px; }
+.net .row span { font-size: 21px; }
+.net .row small { font-size: 14px; }
+.net .nm { font-size: 38px; }
+.net .top { padding: 28px 24px 26px; }
+.ad { min-height: 560px; padding: 30px; }
+.ad .it { font-size: 21px; }
+#s17 .reads { margin-top: 70px; }
+#s17 .gauges { margin-top: 56px; }
+.bt { grid-template-columns: 380px repeat(6, 1fr); }
+#s10 .obj .meas { margin-top: 18px; font-size: 19px; font-weight: 600; color: var(--lum-petroleo, #2F6F6A); display: inline-block; padding: 8px 14px; border-radius: 999px; background: rgba(47,111,106,.1); }
+
+/* ---------- Email marketing: estrategia (s14e) y resultados (s16e) ---------- */
+#s14e .em-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 44px; }
+#s14e .em { background: #fff; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 12px; min-height: 470px; position: relative; }
+#s14e .em .wk { font: 700 15px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); }
+#s14e .em .nm { font-family: "Lora", serif; font-size: 32px; color: var(--lum-azul); font-weight: 600; line-height: 1.12; }
+#s14e .em .it { font-size: 21px; color: #3f454a; line-height: 1.35; border-top: 1px dashed var(--lum-line); padding-top: 10px; }
+#s14e .em .it small { display: block; font: 700 13px "Source Sans 3"; letter-spacing: .12em; text-transform: uppercase; color: #8a9094; margin-bottom: 2px; }
+#s14e .em .step { position: absolute; top: 26px; right: 28px; width: 40px; height: 40px; border-radius: 50%; background: var(--lum-azul); color: var(--lum-marfil); font: 600 21px "Lora", serif; display: grid; place-items: center; }
+#s14e .em.last { background: var(--lum-azul); }
+#s14e .em.last .wk { color: var(--lum-salvia); }
+#s14e .em.last .nm { color: var(--lum-marfil); }
+#s14e .em.last .it { color: rgba(244,240,232,.88); border-top-color: rgba(244,240,232,.25); }
+#s14e .em.last .it small { color: var(--lum-salvia); }
+#s14e .em.last .step { background: var(--lum-marfil); color: var(--lum-azul); }
+#s14e .ads-note b { white-space: nowrap; }
+#s16e .em-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 30px; }
+#s16e .k { background: #fff; border-radius: 12px; padding: 20px 28px; border-top: 6px solid var(--lum-petroleo); }
+#s16e .k.az { border-top-color: var(--lum-azul); }
+#s16e .k .lb { font: 700 15px "Source Sans 3"; letter-spacing: .14em; text-transform: uppercase; color: var(--lum-petroleo); }
+#s16e .k .v { font-family: "Lora", serif; font-size: 58px; color: var(--lum-azul); font-weight: 600; line-height: 1.05; margin: 6px 0 4px; }
+#s16e .k .v small { font-size: 26px; color: #59626a; font-weight: 500; }
+#s16e .k .d { font-size: 19px; color: #4b5157; line-height: 1.35; }
+#s16e .em-base { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; margin-top: 20px; align-items: stretch; }
+#s16e .bars { background: #fff; border-radius: 12px; padding: 18px 28px; }
+#s16e .bars .ph { margin-bottom: 12px; }
+#s16e .bar { display: grid; grid-template-columns: 90px 1fr 120px; align-items: center; gap: 14px; margin: 9px 0; font-size: 19px; color: #3f454a; }
+#s16e .bar .tr { height: 26px; background: var(--lum-azul-08); border-radius: 4px; overflow: hidden; }
+#s16e .bar .tr i { display: block; height: 100%; background: var(--lum-petroleo); border-radius: 4px; }
+#s16e .bar b { font-family: "Lora", serif; font-size: 22px; color: var(--lum-azul); }
+#s16e .send { background: #fff; border-radius: 12px; padding: 18px 28px; }
+#s16e .send .row { display: flex; justify-content: space-between; align-items: baseline; font-size: 19px; color: #3f454a; border-bottom: 1px dashed var(--lum-line); padding: 5px 0; }
+#s16e .send .row:last-child { border-bottom: none; }
+#s16e .send .row b { font-family: "Lora", serif; font-size: 23px; color: var(--lum-azul); }
+
+</style>
+</head>
+<body data-chrome="light">
+
+<div id="viewport">
+<div id="stage" role="region" aria-roledescription="presentación" aria-label="Propuesta de NO Agency para Lumera Consultores">
+
+<!-- =====================================================================
+     BLOQUE 1 · NO AGENCY  (identidad NO Agency)
+     ===================================================================== -->
+
+<section class="slide noa dark" id="s1" data-block="0" data-chrome="light" data-title="Portada">
+  <img class="logo" data-in="1" src="assets/img/noagency-logo-negativo.png" alt="NO Agency — Marketing estratégico integral">
+  <h1 class="display" data-in="2"><span>Lumera ya tiene el valor.</span><em>Nosotros lo hacemos visible.</em></h1>
+  <p class="team" data-in="3">Lucas De Rosa · Valentino Sparano · Lucas Tolaba · Kevin Lema · Yohannis Suárez</p>
+</section>
+
+<section class="slide noa" id="s2" data-block="0" data-chrome="noa" data-title="Quiénes somos">
+  <p class="eyebrow" data-in="1">NO Agency</p>
+  <h2 class="title" data-in="1">Trabajamos dentro del equipo del cliente, no desde afuera.</h2>
+  <div class="disc" data-in="2">
+    <div><b>Estrategia</b><span>entender el negocio antes de ejecutar</span></div>
+    <div><b>Creatividad</b><span>ideas que explican, no que decoran</span></div>
+    <div><b>Producción</b><span>contenidos, sitio y campañas propias</span></div>
+    <div><b>Análisis</b><span>cada acción con su indicador</span></div>
+    <div><b>Acompañamiento</b><span>un equipo cercano durante todo el proceso</span></div>
+  </div>
+  <p class="ia" data-in="3"><span>Inteligencia artificial</span> para investigar, ordenar y acelerar procesos sin perder el criterio humano que nos caracteriza.</p>
+</section>
+
+<section class="slide noa dark" id="s3" data-block="0" data-chrome="light" data-title="Video · NO Agency" data-video="1">
+  <div class="video-box vertical" data-in="1" data-src="assets/video/01-no-agency.mp4" data-poster="assets/img/poster-no-agency.jpg" data-name="Video del equipo de NO Agency"></div>
+  <p class="vt" data-in="2">Este es el equipo que fue parte de Lumera <span>durante todo este proceso.</span></p>
+</section>
+
+<!-- =====================================================================
+     BLOQUE 2 · LUMERA CONSULTORES  (identidad Lumera)
+     ===================================================================== -->
+
+<section class="slide lum" id="s4" data-block="1" data-chrome="lum" data-title="Lumera: situación inicial">
+  <div class="wipe"><img src="assets/img/noagency-isotipo-negativo.png" alt=""></div>
+  <div class="inner">
+    <div class="id">
+      <img class="mark" src="assets/img/lumera-simbolo.png" alt="Símbolo de Lumera Consultores">
+      <p class="client-name">Lumera</p>
+      <p class="client-desc">Consultora de Recursos Humanos</p>
+    </div>
+    <div class="sit">
+      <p class="eyebrow">Situación inicial</p>
+      <h2 class="title sm">Más de 15 años de reputación que, en digital, no existían.</h2>
+      <div class="facts">
+        <div><b>+15 años</b><span>de trayectoria</span></div>
+        <div><b>CABA y AMBA</b><span>cobertura</span></div>
+        <div><b>Recomendación</b><span>origen de la mayoría de los clientes</span></div>
+        <div><b>Ninguno</b><span>sitio, redes activas, base de datos o medición</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide lum" id="s5" data-block="1" data-chrome="lum" data-title="Diagnóstico">
+  <p class="eyebrow" data-in="1">Diagnóstico</p>
+  <h2 class="title sm" data-in="1">El problema no era la calidad del servicio. Era que no se podía verificar.</h2>
+  <div class="journey" data-in="2">
+    <div class="j"><b>Necesidad</b><span>en la empresa</span></div>
+    <div class="j"><b>Recomendación</b><span>alguien sugiere a Lumera</span></div>
+    <div class="j broken"><b>Búsqueda</b><span>no encuentra información</span></div>
+    <div class="j faded"><b>Contacto</b><span>se posterga o va a otra consultora</span></div>
+  </div>
+  <div class="bench" data-in="3">
+    <p class="ph">Presencia digital frente a los competidores relevados</p>
+    <div class="bt" id="bench"></div>
+    <p class="bnote">Nadie explicaba el alcance de sus servicios ni cómo trata los datos de las personas: <b>ese fue el espacio de Lumera.</b></p>
+  </div>
+</section>
+
+<section class="slide lum" id="s6" data-block="1" data-chrome="lum" data-title="Branding: antes y después">
+  <p class="eyebrow" data-in="1">Branding</p>
+  <h2 class="title sm" data-in="1">Lumera conserva su nombre y evoluciona su signo.</h2>
+  <div class="ba" data-in="2">
+    <figure class="pane before">
+      <figcaption>Antes</figcaption>
+      <div class="slot" data-asset="assets/img/lumera-identidad-anterior.png" data-label="Identidad anterior de Lumera"></div>
+      <div class="brief">
+        <div class="swatches old"><i style="background:#0B1C3A"></i><i style="background:#B07A3C"></i><i style="background:#FFFFFF"></i></div>
+        <p class="src">Según el brief inicial del cliente</p>
+        <ul><li>Sin sitio web ni redes activas</li><li>Sin identidad visual definida</li></ul>
+      </div>
+    </figure>
+    <figure class="pane after">
+      <figcaption>Después</figcaption>
+      <img class="sym" src="assets/img/lumera-simbolo.png" alt="Símbolo de Lumera">
+      <div class="sys">
+        <div class="swatches"><i style="background:#173B57"></i><i style="background:#2F6F6A"></i><i style="background:#8FAF9F"></i><i style="background:#F4F0E8"></i><i style="background:#24292D"></i></div>
+        <p class="ty"><span class="a">Lora</span> <span class="b">y Source Sans 3</span></p>
+      </div>
+    </figure>
+    <figure class="pane inuse">
+      <figcaption>En el sitio web</figcaption>
+      <img src="assets/img/v-web-empresas.jpg" alt="Página Empresas del sitio de Lumera con la identidad aplicada">
+    </figure>
+  </div>
+  <div class="caps" data-in="3">
+    <p><b>El símbolo</b>Un check de curvas ascendentes que dejó atrás el punto de la versión anterior. Ya no se lee como dos personas: expresa validación y avance, y representa por igual a los seis servicios.</p>
+    <p><b>El color</b>El azul profundo aporta solidez y los verdes, cercanía. Sobre un fondo marfil, la marca se ve profesional y cálida a la vez, sin caer en la frialdad tecnológica.</p>
+    <p><b>La tipografía</b>Lora, una serif contemporánea, da voz a los títulos y transmite trayectoria. Source Sans 3 hace cómoda la lectura en pantalla y en el celular.</p>
+  </div>
+</section>
+
+<section class="slide lum" id="s7" data-block="1" data-chrome="lum" data-title="Desafíos y oportunidades">
+  <p class="eyebrow" data-in="1">Desafíos y oportunidades</p>
+  <h2 class="title sm" data-in="1">Cuatro desafíos definieron el plan.</h2>
+  <div class="grid4">
+    <div class="pc" data-in="2"><span class="pr">Hacer verificable la credibilidad</span><span class="ev">La recomendación funcionaba hace 15 años, pero terminaba en una búsqueda sin resultados.</span><span class="so">Sitio web y LinkedIn</span></div>
+    <div class="pc" data-in="3"><span class="pr">Pasar de cero datos a medición</span><span class="ev">Sin base ni línea de base, ningún resultado era interpretable.</span><span class="so">Analítica y registro de leads</span></div>
+    <div class="pc" data-in="4"><span class="pr">Diferenciarse demostrando</span><span class="ev">Nadie en la categoría explica alcances, casos ni tratamiento de datos. Y el mercado prioriza capacitación y retención.</span><span class="so">Servicios explicados y contenidos</span></div>
+    <div class="pc" data-in="5"><span class="pr">Atender dos públicos sin confundirlos</span><span class="ev">Las empresas contratan; los profesionales esperan respuesta: 23 de 41 casi nunca la reciben.</span><span class="so">Dos recorridos en el sitio</span></div>
+  </div>
+</section>
+
+<section class="slide lum deep" id="s8" data-block="1" data-chrome="lumlight" data-title="Propuesta de valor">
+  <img class="wm" src="assets/img/lumera-simbolo.png" alt="">
+  <p class="eyebrow" data-in="1">Propuesta de valor</p>
+  <p class="pv" data-in="2">Lumera acerca <em>criterio profesional</em> a las empresas que deciden sobre sus personas sin el respaldo interno suficiente, y <em>explica</em> el porqué de cada decisión.</p>
+  <div class="aud" data-in="3">
+    <div><b>Empresas de 20 a 200 personas</b><span>sin área de RR. HH. o con un área chica · público comercial</span></div>
+    <div><b>Profesionales</b><span>una relación clara y humana durante el proceso · público estratégico</span></div>
+  </div>
+</section>
+
+<section class="slide lum" id="s9" data-block="1" data-chrome="lum" data-title="Buyer personas">
+  <p class="eyebrow" data-in="1">Buyer personas</p>
+  <h2 class="title sm" data-in="1">Dos perfiles que contratan y una candidata que participa.</h2>
+  <div class="bp">
+    <article data-in="2" class="b1">
+      <header><span class="role">Contrata el servicio</span><b>Marcela</b><span class="who">38 años · Socia gerente de una PyME de climatización · 46 personas, sin área de RR. HH.</span></header>
+      <blockquote>“No necesito que me expliquen qué es la gestión del talento. Necesito un jefe de servicio técnico que no se me vaya a los dos meses.”</blockquote>
+      <p><small>Necesita</small>Cubrir un puesto clave que no logra cubrir.</p>
+    </article>
+    <article data-in="3" class="b2">
+      <header><span class="role">Contrata el servicio</span><b>Damián</b><span class="who">32 años · Jefe de RR. HH. de una red de centros médicos · 140 personas, un área de dos</span></header>
+      <blockquote>“Yo sé hacer una búsqueda. Lo que no tengo son manos, y lo que contrate lo tengo que poder defender delante del gerente.”</blockquote>
+      <p><small>Necesita</small>Manos para una apertura y algo para defender ante la gerencia.</p>
+    </article>
+    <article data-in="4" class="b3">
+      <header><span class="role">Participa como candidata</span><b>Sofía</b><span class="who">27 años · Analista de administración · Tiene empleo y busca con discreción</span></header>
+      <blockquote>“Si no quedé, avisame. Prefiero un ‘no’ el martes antes que tres semanas mirando el mail.”</blockquote>
+      <p><small>Necesita</small>Saber quién está del otro lado y recibir una respuesta.</p>
+    </article>
+  </div>
+</section>
+
+<section class="slide lum" id="s10" data-block="1" data-chrome="lum" data-title="Objetivos SMART">
+  <p class="eyebrow" data-in="1">Objetivos SMART · tres meses</p>
+  <h2 class="title sm" data-in="1">Dos metas: que la encuentren y que la consulten.</h2>
+  <div class="objs">
+    <div class="obj" data-in="2">
+      <p class="k">Objetivo 1 · Branding y posicionamiento</p>
+      <p class="goal">50.000<small>sesiones</small></p>
+      <p class="full">Construir en tres meses la presencia digital de Lumera Consultores en el ecosistema de canales definido, alcanzando 50.000 sesiones acumuladas al sitio web mediante marketing de contenidos y publicidad.</p>
+      <p class="meas">Tráfico medido por separado: recorrido Empresas y recorrido Profesionales</p>
+    </div>
+    <div class="obj" data-in="3">
+      <p class="k">Objetivo 2 · Captación</p>
+      <p class="goal">20<small>leads</small></p>
+      <p class="full">Generar en tres meses al menos 20 leads empresariales calificados de CABA y AMBA a través del ecosistema digital de Lumera Consultores, mediante marketing de contenidos y publicidad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide lum" id="s11" data-block="1" data-chrome="lum" data-title="Sitio web" data-video="1">
+  <div class="left">
+    <div class="video-box" data-in="1" data-src="assets/video/02-sitio-web-lumera.mp4" data-poster="assets/img/poster-web.jpg" data-name="Recorrido por el sitio de Lumera"></div>
+  </div>
+  <div class="right">
+    <p class="eyebrow" data-in="1">Sitio web</p>
+    <h2 data-in="2">Quien busca a Lumera ahora la encuentra y elige su camino en un clic.</h2>
+    <div class="routes">
+      <figure data-in="3"><img src="assets/img/v-web-empresas.jpg" alt="Página de entrada Empresas"><figcaption class="emp">Empresas → consulta guiada</figcaption></figure>
+      <figure data-in="4"><img src="assets/img/v-web-profesionales.jpg" alt="Página de entrada Profesionales"><figcaption class="pro">Profesionales → CV sin registro</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide lum" id="s12" data-block="1" data-chrome="lum" data-title="SEO y contenidos">
+  <p class="eyebrow" data-in="1">SEO y contenidos</p>
+  <h2 class="title sm" data-in="1">Contenido que responde una duda real y lleva al servicio.</h2>
+  <div class="seo">
+    <div class="lane emp" data-in="2">
+      <p class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>proceso de selección de personal</p>
+      <figure><img src="assets/img/v-seo-empresas.jpg" alt="Sección Recursos para empresas del sitio de Lumera"></figure>
+      <p class="path"><span>Artículo</span><i>→</i><span>Servicio</span><i>→</i><b>Consulta</b></p>
+    </div>
+    <div class="lane pro" data-in="3">
+      <p class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>carta de recomendación laboral</p>
+      <figure class="phone"><img src="assets/img/v-seo-mobile.jpg" alt="Guía para profesionales en el celular"></figure>
+      <p class="path"><span>Guía PDF</span><i>→</i><span>Oportunidades</span><i>→</i><b>Postulación</b></p>
+    </div>
+    <div class="side" data-in="4">
+      <div><b>78</b><span>palabras clave investigadas para elegir los temas</span></div>
+      <div><b>6</b><span>recursos publicados, 3 para empresas y 3 para profesionales</span></div>
+      <div><b>SEM</b><span>Google Ads cubre la búsqueda comercial mientras el SEO crece</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide lum" id="s13" data-block="1" data-chrome="lum" data-title="Redes sociales">
+  <p class="eyebrow" data-in="1">Redes sociales</p>
+  <h2 class="title sm" data-in="1">Cinco redes, cinco funciones distintas.</h2>
+  <div class="nets" id="nets" data-in="2"></div>
+</section>
+
+<section class="slide lum" id="s14" data-block="1" data-chrome="lum" data-title="Publicidad digital">
+  <p class="eyebrow" data-in="1">Publicidad digital</p>
+  <h2 class="title sm" data-in="1">La pauta se activó cuando el sitio y la medición estuvieron listos.</h2>
+  <div class="ads" id="ads" data-in="2"></div>
+</section>
+
+
+<section class="slide lum" id="s14e" data-block="1" data-chrome="lum" data-title="Email marketing">
+  <p class="eyebrow" data-in="1">Email marketing</p>
+  <h2 class="title sm" data-in="1">El email cuida la relación con quien ya consultó o se suscribió.</h2>
+  <div class="em-flow">
+    <div class="em" data-in="2"><span class="step">1</span><span class="wk">Desde S3 · lanzamiento</span><span class="nm">Confirmación automática</span>
+      <p class="it"><small>Qué hace</small>Cada consulta F1 y cada postulación F2 recibe un correo con el próximo paso</p>
+      <p class="it"><small>Indicador</small>Consultas y postulaciones confirmadas</p></div>
+    <div class="em" data-in="3"><span class="step">2</span><span class="wk">Desde S3</span><span class="nm">Seguimiento uno a uno</span>
+      <p class="it"><small>Qué hace</small>Tres plantillas con la voz de Lumera para responder a cada empresa</p>
+      <p class="it"><small>Indicador</small>K18 primer contacto en 48 horas o menos</p></div>
+    <div class="em" data-in="4"><span class="step">3</span><span class="wk">Desde S4</span><span class="nm">Suscripción con consentimiento</span>
+      <p class="it"><small>Qué hace</small>Los recursos para empresas ofrecen recibir novedades, con una casilla propia</p>
+      <p class="it"><small>Indicador</small>K100 suscriptores empresariales</p></div>
+    <div class="em last" data-in="5"><span class="step">4</span><span class="wk">S11 · Doppler</span><span class="nm">Primer envío y continuidad mensual</span>
+      <p class="it"><small>Qué hace</small>Contenido para empresas que lleva al sitio y a la consulta</p>
+      <p class="it"><small>Indicador</small>Apertura, clics, sesiones y leads del envío</p></div>
+  </div>
+  <div class="ads-note" data-in="6"><span><b>Objetivo 2</b> aporta desde el primer día</span><span><b>Sin costo</b> plan gratuito de Doppler, hasta 500 contactos</span><span><b>Datos protegidos</b> las postulaciones nunca entran a la base de envíos</span></div>
+</section>
+
+<!-- =====================================================================
+     BLOQUE 3 · MÉTRICAS Y KPI
+     ===================================================================== -->
+
+<section class="slide lum" id="s15" data-block="2" data-chrome="lum" data-title="Resultados · redes sociales">
+  <p class="eyebrow" data-in="1">Resultados · redes sociales</p>
+  <h2 class="title sm" data-in="1">Cada red rindió en su función: LinkedIn y Facebook trajeron empresas, TikTok e Instagram sumaron audiencia.</h2>
+  <div class="rnets" id="rnets" data-in="2"></div>
+  <div class="read" data-in="3"><p><b>Lectura</b>LinkedIn fue la red con más consultas de empresas (9). El contenido de Instagram se guarda como material de consulta y TikTok sumó 3.850 espectadores por video.</p><p><b>Decisión</b>Sostener LinkedIn orgánico y revisar la frecuencia y el formato de X.</p></div>
+</section>
+
+<section class="slide lum" id="s15p" data-block="2" data-chrome="lum" data-title="Resultados · publicidad digital">
+  <p class="eyebrow" data-in="1">Resultados · publicidad digital</p>
+  <h2 class="title sm" data-in="1">Google Ads generó más leads que cualquier otra campaña; Meta Empresas, el lead más barato.</h2>
+  <div class="pads">
+    <div class="pad hero" data-in="2"><span class="nm">Google Ads</span><span class="fn">Búsqueda por servicio · Objetivo 2</span>
+      <span class="val">9</span><span class="vl">leads calificados, 37,5 % del total</span>
+      <span class="sm"><span>Costo por lead</span><b>USD 149</b></span><span class="sm"><span>Sesiones al sitio</span><b>3.900</b></span><span class="sm"><span>Inversión</span><b>USD 1.340</b></span></div>
+    <div class="pad" data-in="3"><span class="nm">Meta · Empresas</span><span class="fn">Captación · Objetivo 2</span>
+      <span class="val">USD 100</span><span class="vl">por lead calificado</span>
+      <span class="sm"><span>Leads calificados</span><b>3</b></span><span class="sm"><span>Sesiones al sitio</span><b>2.600</b></span><span class="sm"><span>Inversión</span><b>USD 300</b></span></div>
+    <div class="pad" data-in="4"><span class="nm">Meta · Profesionales</span><span class="fn">Reconocimiento · Objetivo 1</span>
+      <span class="val">212</span><span class="vl">postulaciones</span>
+      <span class="sm"><span>Sesiones al sitio</span><b>4.600</b></span><span class="sm"><span>Leads calificados</span><b>—</b></span><span class="sm"><span>Inversión</span><b>USD 200</b></span></div>
+    <div class="pad warn" data-in="5"><span class="nm">LinkedIn Ads</span><span class="fn">Piloto de 20 días · Objetivo 2</span>
+      <span class="val">USD 1,43</span><span class="vl">por sesión de un decisor</span>
+      <span class="sm"><span>Leads calificados</span><b>1</b></span><span class="sm"><span>Sesiones al sitio</span><b>210</b></span><span class="sm"><span>Inversión</span><b>USD 300</b></span></div>
+  </div>
+  <div class="ptot" data-in="6"><span><b>USD 2.140</b> invertidos en pauta</span><span><b>13 de 24</b> leads calificados</span><span><b>USD 165</b> costo promedio por lead</span><span><b>11.310</b> sesiones al sitio</span></div>
+  <div class="read" data-in="7"><p><b>Lectura</b>Google Ads capta a quien ya busca un servicio. LinkedIn Ads llegó a decisores, pero con un costo por sesión cuatro veces mayor que Google.</p><p><b>Decisión</b>Google Ads como canal principal de captación. La inversión de LinkedIn Ads pasa a Google y Meta Empresas.</p></div>
+</section>
+
+<section class="slide lum" id="s16" data-block="2" data-chrome="lum" data-title="Resultados · sitio web">
+  <p class="eyebrow" data-in="1">Resultados · sitio web</p>
+  <h2 class="title sm" data-in="1">Dos de cada tres sesiones fueron de profesionales; los leads llegaron por búsqueda e intención.</h2>
+  <div class="wrap">
+    <div data-in="2"><p class="ph">52.480 sesiones por fuente · <i class="sq e"></i>Empresas <i class="sq p"></i>Profesionales</p><div id="ch-sources"></div></div>
+    <div data-in="3">
+      <p class="ph">Empresas · de la sesión al lead</p>
+      <div id="ch-funnel-e"></div>
+      <p class="ph" style="margin-top:14px">Profesionales · de la sesión a la postulación</p>
+      <div id="ch-funnel-p"></div>
+    </div>
+  </div>
+  <div class="read" data-in="4"><p><b>Lectura</b>Google Ads aportó 9 de los 18 leads del sitio, a USD 149 cada uno. La tasa sesión → lead del recorrido Empresas fue 0,11 %.</p><p><b>Decisión</b>Google Ads como canal principal de captación y más contenido orientado a empresas.</p></div>
+</section>
+
+<section class="slide lum" id="s16e" data-block="2" data-chrome="lum" data-title="Resultados · email marketing">
+  <p class="eyebrow" data-in="1">Resultados · email marketing</p>
+  <h2 class="title sm" data-in="1">Ninguna consulta quedó sin respuesta y 58 empresas eligieron recibir a Lumera.</h2>
+  <div class="em-kpis">
+    <div class="k" data-in="2"><p class="lb">Confirmaciones</p><p class="v">100 %</p><p class="d">de las consultas F1 y de las 586 postulaciones F2</p></div>
+    <div class="k" data-in="3"><p class="lb">Primer contacto · K18</p><p class="v">24 <small>de 24</small></p><p class="d">leads contactados en 48 horas o menos, con una mediana de 9 horas</p></div>
+    <div class="k az" data-in="4"><p class="lb">Suscriptores · K100</p><p class="v">58</p><p class="d">empresas con consentimiento propio, desde cero</p></div>
+    <div class="k az" data-in="5"><p class="lb">Primer envío · S11</p><p class="v">46 %</p><p class="d">de apertura sobre 46 correos entregados</p></div>
+  </div>
+  <div class="em-base" data-in="6">
+    <div class="bars"><p class="ph">Altas de suscriptores por mes</p>
+      <div class="bar"><span>Mes 1</span><span class="tr"><i class="grow d1" style="width:13%"></i></span><b>4</b></div>
+      <div class="bar"><span>Mes 2</span><span class="tr"><i class="grow d2" style="width:100%"></i></span><b>30</b></div>
+      <div class="bar"><span>Mes 3</span><span class="tr"><i class="grow d3" style="width:80%"></i></span><b>24</b></div>
+    </div>
+    <div class="send"><p class="ph">Primer envío con Doppler</p>
+      <div class="row"><span>Clics únicos</span><b>13 % (6)</b></div>
+      <div class="row"><span>Sesiones al sitio con UTM de email</span><b>14</b></div>
+      <div class="row"><span>Leads empresariales calificados</span><b>1</b></div>
+      <div class="row"><span>Bajas</span><b>1</b></div>
+    </div>
+  </div>
+  <div class="read" data-in="7"><p><b>Lectura</b>El email no trae tráfico: retiene. Aseguró la respuesta a cada contacto y armó una base propia; con 46 correos, la apertura todavía es una muestra chica.</p><p><b>Decisión</b>Sostener el envío mensual y sumar la suscripción a más recursos para empresas.</p></div>
+</section>
+
+<section class="slide lum" id="s17" data-block="2" data-chrome="lum" data-title="Resultados por objetivo">
+  <p class="eyebrow" data-in="1">Resultados por objetivo</p>
+  <h2 class="title sm" data-in="1">Los dos objetivos se superaron.</h2>
+  <div class="gauges">
+    <div class="gauge" data-in="2">
+      <div class="gv"><svg viewBox="0 0 300 300" width="300" height="300"><g transform="rotate(-90 150 150)">
+        <circle cx="150" cy="150" r="118" fill="none" stroke="rgba(23,59,87,.08)" stroke-width="28"/>
+        <circle class="ring" cx="150" cy="150" r="118" fill="none" stroke="#2F6F6A" stroke-width="28" stroke-dasharray="741.4" style="stroke-dashoffset:741.4;--off:0"/>
+        <circle class="ring" cx="150" cy="150" r="142" fill="none" stroke="#173B57" stroke-width="9" stroke-linecap="round" stroke-dasharray="892.2" style="stroke-dashoffset:892.2;--off:847.6"/>
+      </g></svg><div class="c"><b>105 %</b></div></div>
+      <div><p class="k">Objetivo 1 · Sesiones en el sitio</p><p class="res">52.480 <small>de 50.000</small></p><p class="tx">La mitad llegó desde las redes orgánicas y una de cada cinco, desde Google.</p></div>
+    </div>
+    <div class="gauge" data-in="3">
+      <div class="gv"><svg viewBox="0 0 300 300" width="300" height="300"><g transform="rotate(-90 150 150)">
+        <circle cx="150" cy="150" r="118" fill="none" stroke="rgba(23,59,87,.08)" stroke-width="28"/>
+        <circle class="ring" cx="150" cy="150" r="118" fill="none" stroke="#2F6F6A" stroke-width="28" stroke-dasharray="741.4" style="stroke-dashoffset:741.4;--off:0"/>
+        <circle class="ring" cx="150" cy="150" r="142" fill="none" stroke="#173B57" stroke-width="9" stroke-linecap="round" stroke-dasharray="892.2" style="stroke-dashoffset:892.2;--off:713.8"/>
+      </g></svg><div class="c"><b>120 %</b></div></div>
+      <div><p class="k">Objetivo 2 · Leads empresariales calificados</p><p class="res">24 <small>de 20</small></p><p class="tx">13 llegaron por pauta y 11 sin inversión publicitaria.</p></div>
+    </div>
+  </div>
+  <div class="reads">
+    <div class="rd" data-in="4"><b>USD 165</b><span>costo promedio por lead calificado: la referencia para el próximo período</span></div>
+    <div class="rd" data-in="5"><b>9 de 24</b><span>leads llegaron por Google Ads, el canal más eficiente</span></div>
+    <div class="rd warn" data-in="6"><b>32 %</b><span>del tráfico fue de empresas: el frente a reforzar</span></div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     BLOQUE 4 · CONCLUSIÓN Y PRÓXIMOS PASOS
+     ===================================================================== -->
+
+<section class="slide lum" id="s18" data-block="3" data-chrome="lum" data-title="Conclusión y próximos pasos">
+  <img class="wm" src="assets/img/lumera-simbolo.png" alt="">
+  <p class="eyebrow" data-in="1">Conclusión</p>
+  <h2 class="title sm" data-in="1">Lumera ya tiene una infraestructura de marketing propia, y datos para decidir dónde invertir.</h2>
+  <div class="concl">
+    <div class="col" data-in="2">
+      <p class="ph">Lo que construimos</p>
+      <ul class="ok">
+        <li>Identidad visual aplicada en todos los canales</li>
+        <li>Sitio web lanzado, con dos recorridos</li>
+        <li>Cinco redes activas, con función propia</li>
+        <li>Campañas en Google, Meta y LinkedIn</li>
+        <li>Medición y registro de cada lead</li>
+        <li>Email mensual a empresas suscriptas, activo desde el mes 3</li>
+      </ul>
+    </div>
+    <div class="col" data-in="3">
+      <p class="ph">Lo que aprendimos</p>
+      <ul class="learn">
+        <li>Google Ads es el canal más eficiente para captar empresas</li>
+        <li>LinkedIn orgánico convierte autoridad en consultas</li>
+        <li>TikTok e Instagram construyen visibilidad</li>
+        <li>El email sostiene la relación: 58 empresas suscriptas</li>
+        <li>El tráfico de empresas tiene que crecer</li>
+      </ul>
+    </div>
+    <div class="col steps" data-in="4">
+      <p class="ph">Próximos pasos</p>
+      <ol>
+        <li><b>Escalar Google Ads</b>como canal principal de captación</li>
+        <li><b>Reasignar</b>la inversión de LinkedIn Ads a Google y Meta Empresas</li>
+        <li><b>Ampliar la base de email</b>y sostener el envío mensual</li>
+        <li><b>Reforzar el contenido para empresas</b>y redefinir el rol de X</li>
+        <li><b>Evaluar Faro</b>como segunda etapa</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="slide lum" id="s19" data-block="3" data-chrome="lum" data-title="Faro" data-video="1">
+  <div class="intro">
+    <p class="eyebrow" data-in="1">La próxima etapa</p>
+    <h2 data-in="1"><span class="fname">Faro</span>Acompañar a la empresa cliente durante toda la búsqueda.</h2>
+    <p class="prob" data-in="2">Hoy, quien contrata una búsqueda tiene que preguntar para saber cómo avanza: <b>15 de 24</b> se enteran por otra persona. Faro le muestra cada etapa, le acerca los candidatos y le pide su devolución en el momento justo.</p>
+    <div class="feat" data-in="3">
+      <div><b>Seguir</b><span>cada etapa de la búsqueda, sin tener que preguntar</span></div>
+      <div><b>Comparar</b><span>los candidatos de la terna, sin puntajes automáticos</span></div>
+      <div><b>Decidir</b><span>y dejar la devolución registrada para el consultor</span></div>
+    </div>
+    <p class="tagline" data-in="4"><span class="tag futuro">Propuesta de NO Agency · nombre preliminar · fuera del presupuesto actual</span></p>
+  </div>
+  <div class="stagebox">
+    <div class="phones" data-in="2">
+      <img src="assets/img/v-faro-1.jpg" alt="Faro: inicio con pendientes"><img src="assets/img/v-faro-2.jpg" alt="Faro: detalle de la búsqueda"><img src="assets/img/v-faro-3.jpg" alt="Faro: comparar candidatos">
+    </div>
+    <div class="video-box" data-in="3" data-src="assets/video/03-faro.mp4" data-poster="assets/img/poster-faro.jpg" data-name="Video de presentación de Faro"></div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     BLOQUE 5 · INVERSIÓN  (identidad NO Agency)
+     ===================================================================== -->
+
+<section class="slide noa" id="s20" data-block="4" data-chrome="noa" data-title="Propuesta económica">
+  <p class="eyebrow" data-in="1">Inversión · tres meses</p>
+  <h2 class="title sm" data-in="1">USD 8.000, cada dólar asignado a un entregable.</h2>
+  <div class="wrap">
+    <div class="piebox" data-in="2"><div id="ch-pie"></div></div>
+    <div class="svc" data-in="3">
+      <div class="sv"><i style="background:#22284F"></i><div><b>Redes y contenidos</b><span>208 publicaciones · 104 videos originales · comunidad diaria · 6 recursos · 3 informes</span></div><em>USD 2.990</em></div>
+      <div class="sv"><i style="background:#5A6290"></i><div><b>Sitio web y medición</b><span>13 páginas · 2 recorridos · formularios · SEO · analítica y registro de leads · mantenimiento</span></div><em>USD 2.540</em></div>
+      <div class="sv"><i style="background:#AAB4CE"></i><div><b>Gestión de campañas</b><span>configuración y optimización semanal de Google, Meta y LinkedIn Ads</span></div><em>USD 270</em></div>
+      <div class="sv direct"><i style="background:#F25C3E"></i><div><b>Pauta en plataformas</b><span>Google 1.340 · Meta 500 · LinkedIn 300 · la paga Lumera directo, sin recargo</span></div><em>USD 2.140</em></div>
+      <div class="sv direct"><i style="background:#201E1B"></i><div><b>Hosting y dominio .com.ar</b><span>12 meses, a nombre de Lumera</span></div><em>USD 60</em></div>
+    </div>
+  </div>
+  <p class="cond" data-in="4"><b>Pagos</b> USD 2.340 · 3.710 · 1.950, uno por mes &nbsp;·&nbsp; <b>Honorarios</b> precio cerrado, sin cargos adicionales &nbsp;·&nbsp; <b>No incluye</b> CRM, remarketing, landings nuevas, envíos masivos de email ni Faro</p>
+</section>
+
+<section class="slide noa dark" id="s21" data-block="4" data-chrome="light" data-title="Cierre">
+  <p class="eyebrow" data-in="1">Gracias</p>
+  <p class="promise" data-in="2">No trabajamos desde afuera. <span>Nos involucramos para crecer con Lumera.</span></p>
+  <div class="bottom" data-in="3">
+    <img src="assets/img/noagency-logo-negativo.png" alt="NO Agency">
+    <p>¿Preguntas?</p>
+  </div>
+</section>
+
+<!-- ================= CROMO ================= -->
+<nav id="chrome" aria-label="Navegación de la presentación">
+  <div id="rail"></div>
+  <span id="timer" aria-live="off">00:00</span>
+  <span id="counter" aria-live="polite">1 / 21</span>
+  <div class="ctrl">
+    <button id="b-prev" aria-label="Diapositiva anterior (←)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button id="b-next" aria-label="Diapositiva siguiente (→)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button id="b-notes" aria-label="Notas del expositor (N)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16H5zM8 9h8M8 13h8M8 17h5"/></svg></button>
+    <button id="b-ov" aria-label="Índice de diapositivas (O)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></button>
+    <button id="b-timer" aria-label="Cronómetro (T)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></button>
+    <button id="b-fs" aria-label="Pantalla completa (F)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</nav>
+
+</div>
+</div>
+
+<aside id="notes" aria-label="Notas del expositor"></aside>
+<div id="overview" role="dialog" aria-label="Índice de diapositivas">
+  <header><h3>Índice y tiempos</h3><p><span id="ov-total"></span> · Enter o clic para ir · Esc para cerrar</p></header>
+  <div id="ov-grid"></div>
+</div>
+<div id="hint"><kbd>←</kbd><kbd>→</kbd> navegar · <kbd>N</kbd> notas · <kbd>O</kbd> índice · <kbd>F</kbd> pantalla completa · <kbd>T</kbd> cronómetro · <kbd>P</kbd> ocultar avisos de pendientes</div>
+
+<script>
+/* =========================================================
+   DATOS DE LA PRESENTACIÓN (v3)
+   BLOCKS  · los cinco bloques narrativos (barra inferior)
+   NOTES   · guion del expositor: coincide con lo visible en cada diapositiva
+   SIM     · tabla maestra de resultados del período (ver anexo)
+   BENCH · NETS · ADS · RNETS · datos de las diapositivas de diagnóstico, redes, publicidad y resultados
+   BUDGET  · cotización vigente (Entrega final, punto 18)
+   ========================================================= */
+
+window.BLOCKS = ["NO Agency", "Lumera Consultores", "Resultados", "Conclusión y próximos pasos", "Inversión"];
+
+/* Duración estimada de los videos, en segundos. Ajustar cuando estén los archivos. */
+window.VIDEO_EST = { s3: 60, s11: 65, s19: 50 };
+
+window.NOTES = {
+  s1: { t: 20, who: "Kevin Lema",
+    msg: "Lumera ya tiene el valor; nosotros lo hacemos visible.",
+    say: "Buen día. Somos NO Agency y venimos a presentarles el cierre del plan de marketing digital de Lumera: qué encontramos, qué hicimos, qué resultados obtuvimos, cómo seguimos y la inversión.",
+    next: "“Primero, quiénes somos y cómo trabajamos.”" },
+  s2: { t: 40, who: "Kevin Lema",
+    msg: "Trabajamos dentro del equipo del cliente.",
+    say: "No somos un proveedor que recibe pedidos y entrega piezas. Antes de proponer, entendimos cómo llegan los clientes a Lumera. Integramos cinco funciones en un mismo equipo: estrategia, creatividad, producción, análisis y acompañamiento. Usamos inteligencia artificial para investigar, ordenar y acelerar procesos, sin perder el criterio humano que nos caracteriza.",
+    next: "“Este es el equipo.”" },
+  s3: { t: 70, who: "Kevin Lema",
+    msg: "El equipo que fue parte de Lumera durante todo el proceso.",
+    say: "Reproducir el video sin hablar encima (duración estimada: 60 s). Al terminar, leer la frase de la diapositiva.",
+    next: "“Con ese enfoque conocimos a Lumera.”" },
+  s4: { t: 35, who: "Kevin Lema",
+    msg: "Más de 15 años de reputación que en digital no existían.",
+    say: "Lumera es una consultora de Recursos Humanos con más de 15 años, que trabaja en CABA y AMBA. La mayoría de sus clientes llegaba por recomendación y, cuando empezamos, no tenía sitio, redes activas, base de datos ni medición.",
+    next: "“¿Por qué era un problema si los clientes igual llegaban?”" },
+  s5: { t: 55, who: "Valentino Sparano",
+    msg: "El problema era la verificabilidad, no la calidad.",
+    say: "El recorrido es simple: surge una necesidad, alguien recomienda a Lumera, la persona la busca y no encuentra nada. Ahí el contacto se posterga o termina en otra consultora. La tabla lo muestra: los cinco competidores que relevamos tenían sitio, redes y clientes o testimonios visibles; Lumera no tenía ninguno de esos activos. Pero ninguno explicaba el alcance de sus servicios ni cómo trata los datos de las personas. Ese espacio vacío fue nuestra oportunidad.",
+    next: "“El primer paso para que Lumera se pudiera ver fue su identidad.”" },
+  s6: { t: 60, who: "Lucas De Rosa",
+    msg: "Una evolución del signo, no una marca nueva.",
+    say: "A la izquierda, la identidad con la que llegó Lumera, tal como figura en su brief inicial: un logo en azul y dorado, pero sin sitio, sin redes y, según el propio brief, sin una identidad visual definida. En el centro, el sistema actual. El símbolo es un check de curvas ascendentes; al quitar el punto de la versión anterior dejó de leerse como dos personas y pasó a expresar validación y avance, algo que representa a los seis servicios. El azul profundo aporta solidez y los verdes, cercanía; sobre marfil, la marca se ve profesional y cálida, no tecnológica. Lora le da voz a los títulos y Source Sans 3 hace cómoda la lectura en pantalla. A la derecha, el sistema aplicado en el sitio.",
+    next: "“Con la identidad resuelta, enfrentamos cuatro desafíos.”" },
+  s7: { t: 50, who: "Valentino Sparano",
+    msg: "Cuatro desafíos del diagnóstico definieron el plan.",
+    say: "Salen del análisis FODA. Primero, hacer verificable la credibilidad: la recomendación funcionaba, pero terminaba en una búsqueda vacía; la respuesta fue el sitio y LinkedIn. Segundo, pasar de cero datos a medición. Tercero, diferenciarse demostrando, porque nadie en la categoría explica alcances ni tratamiento de datos, y el mercado prioriza capacitación y retención. Cuarto, atender a dos públicos sin confundirlos: las empresas contratan y los profesionales esperan una respuesta que casi nunca llega.",
+    next: "“Todo eso se ordena alrededor de una propuesta de valor.”" },
+  s8: { t: 40, who: "Valentino Sparano",
+    msg: "Criterio profesional explicado.",
+    say: "Lumera acerca criterio profesional a las empresas que deciden sobre sus personas sin el respaldo interno suficiente, y explica el porqué de cada decisión. El público comercial son empresas de 20 a 200 personas, sin área de Recursos Humanos o con un área chica. Los profesionales no compran el servicio, pero su experiencia es parte de lo que recibe la empresa.",
+    next: "“¿Quiénes son, concretamente?”" },
+  s9: { t: 55, who: "Yohannis Suárez",
+    msg: "Dos perfiles que contratan y una candidata que participa.",
+    say: "Marcela es socia gerente de una PyME sin área de Recursos Humanos: decide sola y necesita cubrir un puesto clave. Damián es el único responsable de RR. HH. de una red de centros médicos: sabe hacer una búsqueda, pero le faltan manos y necesita algo que pueda defender ante la gerencia. Sofía es una candidata que busca con discreción: no contrata, pero su experiencia en el proceso es parte de la calidad que Lumera entrega. Todo el plan se diseñó pensando en ellos tres.",
+    next: "“Para ellos fijamos dos objetivos.”" },
+  s10: { t: 45, who: "Valentino Sparano",
+    msg: "Que la encuentren y que la consulten.",
+    say: "El primer objetivo, de branding y posicionamiento: 50.000 sesiones acumuladas en el sitio en tres meses, con el tráfico de empresas y el de profesionales medidos por separado. El segundo, de captación: al menos 20 leads empresariales calificados de CABA y AMBA. Un lead califica si es una empresa de la zona, plantea una necesidad ligada a un servicio y deja datos para el seguimiento.",
+    next: "“La pieza central para lograrlo es el sitio.”" },
+  s11: { t: 90, who: "Lucas De Rosa",
+    msg: "El sitio resolvió la verificación.",
+    say: "Antes del video: “Miren cómo se separan los dos caminos desde la primera pantalla”. Reproducir (duración estimada: 65 s). Después: Empresas, en azul, lleva de los servicios a una consulta guiada; Profesionales, en verde, lleva a las oportunidades y al envío de CV sin registro. Consultas y postulaciones llegan a registros distintos.",
+    next: "“¿Cómo llega gente al sitio sin pagar por cada clic?”" },
+  s12: { t: 50, who: "Yohannis Suárez",
+    msg: "El SEO responde una duda real y lleva al servicio.",
+    say: "Una empresa busca “proceso de selección de personal”, encuentra el artículo de Lumera y desde ahí llega al servicio y a la consulta. Un profesional busca cómo escribir una carta de recomendación, descarga la guía y llega a las oportunidades. Elegimos los temas a partir de 78 palabras clave investigadas. Mientras el SEO crece, Google Ads cubre las búsquedas comerciales.",
+    next: "“Además del buscador, las redes.”" },
+  s13: { t: 55, who: "Yohannis Suárez",
+    msg: "Cinco redes, cinco funciones distintas.",
+    say: "Están ordenadas por prioridad. LinkedIn es la red de autoridad: ahí el decisor verifica al proveedor. Instagram construye comunidad y cercanía con profesionales, empresas y comunidad, con el equipo como caras de la marca, y también informa a decisores. TikTok genera descubrimiento entre quienes todavía no conocen a Lumera. Facebook da presencia institucional y difunde oportunidades. X participa de la conversación del sector. En total, 16 piezas por semana con pilares propios para empresas y para profesionales.",
+    next: "“Y sobre esa base, la publicidad.”" },
+  s14: { t: 45, who: "Lucas Tolaba",
+    msg: "La pauta se activó con el sitio y la medición listos.",
+    say: "Cuatro campañas, cada una con su público y su indicador. Google Ads concentró la inversión porque capta a quien ya busca un servicio. Meta trabajó en paralelo con una campaña para empresas y otra para profesionales. LinkedIn Ads fue un piloto de 20 días dirigido a decisores. Ninguna campaña se encendió antes de la semana 5, cuando el sitio ya estaba publicado y la medición verificada.",
+    next: "“Y para no perder a quien ya nos escribió, el email.”" },
+  s14e: { t: 35, who: "Lucas Tolaba",
+    msg: "El email cuida la relación después de la consulta.",
+    say: "El email marketing es la quinta estrategia. Lumera no tenía base de contactos, así que arrancamos por lo que no la necesita: cada consulta y cada postulación recibe una confirmación con el próximo paso, y cada empresa recibe un seguimiento uno a uno con plantillas propias. Desde la semana 4, los recursos para empresas ofrecen suscribirse con un consentimiento aparte, y en la semana 11 hicimos el primer envío con Doppler. Los datos de postulación nunca entran a la base de envíos.",
+    next: "“Veamos los resultados.”" },
+  s15: { t: 50, who: "Lucas Tolaba",
+    msg: "Cada red rindió en su función.",
+    say: "Cada tarjeta muestra primero el rendimiento dentro de la red, con el indicador que corresponde a su función, y abajo lo que aportó al plan. LinkedIn tuvo 3,8 % de interacción por impresión y 9 consultas de empresas. En Instagram, el 4,1 % del alcance guardó o compartió el contenido. TikTok promedió 3.850 espectadores por video y fue la red que más sesiones llevó al sitio. Facebook sumó 3.100 sesiones y 3 consultas. X quedó en 2,6 % de interacción y sin consultas. Decisión: sostener LinkedIn orgánico y revisar X.",
+    next: "“Y la publicidad en redes.”" },
+  s15p: { t: 50, who: "Lucas Tolaba",
+    msg: "Google Ads, el canal principal de captación.",
+    say: "La pauta invirtió USD 2.140 y generó 13 de los 24 leads calificados, a USD 165 de promedio. Google Ads fue la campaña con más leads: 9, a USD 149 cada uno, porque llega a quien ya busca un servicio. Meta Empresas consiguió el lead más barato, a USD 100. Meta Profesionales sumó 212 postulaciones, que no cuentan como leads. El piloto de LinkedIn Ads llegó a decisores, pero a USD 1,43 por sesión, cuatro veces más que Google. Decisión: Google Ads como canal principal y la inversión de LinkedIn Ads, a Google y Meta Empresas.",
+    next: "“¿Qué pasó dentro del sitio?”" },
+  s16: { t: 60, who: "Lucas Tolaba",
+    msg: "La mayoría de las sesiones fueron de profesionales; los leads llegaron por intención.",
+    say: "De 52.480 sesiones, 16.790 fueron del recorrido Empresas y 35.690 de Profesionales. En Empresas, el 42 % vio una página de servicio, hubo 31 contactos desde el sitio y 18 calificaron como lead; otros 6 llegaron por mensajes en redes: 24 en total. Del lado profesional, 586 postulaciones, que se registran aparte. Google Ads aportó 9 de los 18 leads del sitio, a USD 149. Decisión: Google Ads como canal principal y más contenido para empresas.",
+    next: "“Y con quienes ya nos conocían, ¿qué hizo el email?”" },
+  s16e: { t: 40, who: "Lucas Tolaba",
+    msg: "El email no trae tráfico: retiene.",
+    say: "Todas las consultas y las 586 postulaciones recibieron confirmación, y los 24 leads tuvieron un primer contacto dentro de las 48 horas, con una mediana de 9. Partimos de cero contactos y cerramos con 58 empresas suscriptas con consentimiento propio. El primer envío tuvo 46 % de apertura y 13 % de clics, y generó un lead calificado. Es una muestra chica, por eso la decisión es sostener el envío mensual y sumar la suscripción a más recursos para empresas.",
+    next: "“¿Qué significa todo esto para los objetivos?”" },
+  s17: { t: 50, who: "Lucas Tolaba",
+    msg: "Los dos objetivos se superaron.",
+    say: "Objetivo 1: 52.480 sesiones sobre 50.000, un 105 %. Objetivo 2: 24 leads calificados sobre 20, un 120 %; 13 por pauta y 11 sin inversión. Tres lecturas para el próximo período: el costo por lead quedó en USD 165 y es nuestra referencia; Google Ads fue el canal más eficiente; y el tráfico de empresas, un 32 %, es el frente a reforzar.",
+    next: "“¿Qué deja todo esto?”" },
+  s18: { t: 60, who: "Valentino Sparano",
+    msg: "Lumera ya tiene una infraestructura de marketing propia.",
+    say: "Lo que construimos: identidad aplicada, sitio lanzado con dos recorridos, cinco redes activas, campañas en tres plataformas, un sistema que registra cada lead y un email mensual a empresas suscriptas, activo desde el mes 3. Lo que aprendimos: Google Ads es el canal más eficiente, LinkedIn convierte autoridad en consultas, TikTok e Instagram dan visibilidad, el email sostiene la relación con 58 empresas suscriptas y el tráfico de empresas tiene que crecer. Por eso, los próximos pasos: escalar Google Ads, mover la inversión de LinkedIn Ads a Google y Meta Empresas, ampliar la base de email y sostener el envío mensual, reforzar el contenido para empresas y evaluar Faro.",
+    next: "“Faro es esa segunda etapa.”" },
+  s19: { t: 80, who: "Lucas De Rosa",
+    msg: "Faro acompañaría a la empresa cliente durante toda la búsqueda.",
+    say: "Faro es una propuesta de NO Agency para la próxima etapa, fuera de este presupuesto. Hoy, quien contrata una búsqueda tiene que preguntar cómo avanza: 15 de 24 personas se enteran por otra persona. Faro le muestra cada etapa, le permite comparar la terna sin puntajes automáticos y registrar su devolución para el consultor, que sigue siendo quien acompaña. Reproducir el video (duración estimada: 50 s).",
+    next: "“Para terminar, la inversión.”" },
+  s20: { t: 70, who: "Kevin Lema",
+    msg: "USD 8.000, cada dólar asignado a un entregable.",
+    say: "El total fue de USD 8.000 por tres meses. USD 5.800 son honorarios de NO Agency: redes y contenidos (USD 2.990, con 208 publicaciones y 104 videos), sitio y medición (USD 2.540) y gestión de campañas (USD 270). USD 2.200 los pagó Lumera directo a las plataformas y al hosting, sin recargo. Tres pagos, uno por mes, con honorarios de precio cerrado. No incluye CRM, remarketing, landings nuevas, envíos masivos de email ni Faro.",
+    next: "“Y una última idea.”" },
+  s21: { t: 15, who: "Kevin Lema",
+    msg: "Nos involucramos en el negocio de Lumera.",
+    say: "Leer la frase, agradecer y abrir preguntas.",
+    next: "—" }
+};
+
+/* ---------- Diagnóstico · presencia digital frente a competidores (benchmark, entregable 02) ---------- */
+window.BENCH = {
+  cols: ["TR", "Hucap", "KOIWE", "Limón", "SP Consulting", "Lumera"],
+  rows: [
+    { r: "Sitio web", v: [1, 1, 1, 1, 1, 0] },
+    { r: "Redes activas", v: [1, 1, 1, 1, 1, 0] },
+    { r: "Clientes o testimonios visibles", v: [1, 1, 1, 1, 1, 0] },
+    { r: "Alcance de servicios y uso de datos", v: [0, 0, 0, 0, 0, 0] }
+  ]
+};
+
+/* ---------- Redes: función, público, pilares y frecuencia (Segunda entrega 11.2) ---------- */
+window.NETS = [
+  { n: "LinkedIn", p: 1, fn: "Autoridad profesional", c: "#173B57", pub: "Empresas y decisores", pil: "Agenda de gestión de personas · servicios explicados", foco: "Es donde el decisor verifica al proveedor", fq: "3 por semana" },
+  { n: "Instagram", p: 2, fn: "Comunidad y cercanía", c: "#2F6F6A", pub: "Profesionales, empresas y comunidad", pil: "Empleabilidad práctica · procesos de selección por dentro", foco: "Cercanía con el equipo como caras de la marca, también ante decisores", fq: "3 por semana" },
+  { n: "TikTok", p: 3, fn: "Descubrimiento", c: "#2F6F6A", pub: "Postulantes y profesionales", pil: "Empleabilidad · procesos por dentro · mercado laboral", foco: "Llegar a quien todavía no conoce a Lumera", fq: "5 videos por semana" },
+  { n: "Facebook", p: 4, fn: "Presencia institucional", c: "#173B57", pub: "Público general", pil: "Oportunidades laborales · gestión para PyMEs", foco: "Una organización existente y localizable", fq: "2 por semana" },
+  { n: "X", p: 5, fn: "Conversación del sector", c: "#5d7f72", pub: "Comunidad de RR. HH.", pil: "Agenda de gestión · mercado laboral con dato", foco: "Opinión fundada sobre el mercado de trabajo", fq: "3 por semana" }
+];
+
+/* ---------- Publicidad (Entrega final, tablas 16.5 y 18.3) ---------- */
+window.ADS = [
+  { pl: "Google Ads", n: "Búsqueda por servicio", usd: 1340, a: 5, b: 13, aud: "Empresas que buscan un servicio en CABA y AMBA", dst: "Páginas de servicio", kpi: "Costo por lead calificado" },
+  { pl: "Meta Ads", n: "Empresas", usd: 300, a: 5, b: 12, aud: "Dueños y responsables de PyMEs de CABA y AMBA", dst: "Páginas de servicio", kpi: "Leads calificados" },
+  { pl: "Meta Ads", n: "Profesionales", usd: 200, a: 5, b: 12, aud: "Profesionales de CABA y AMBA", dst: "Oportunidades", kpi: "Sesiones y postulaciones" },
+  { pl: "LinkedIn Ads", n: "Piloto a decisores", usd: 300, a: 6, b: 8, aud: "Dueños, gerentes y responsables de RR. HH.", dst: "Recorrido Empresas", kpi: "Costo por sesión de decisor" }
+];
+
+/* ---------- Resultados por red (orgánico) ---------- */
+window.RNETS = [
+  { n: "LinkedIn", fn: "Autoridad", kl: "Interacción por impresión", big: "3,8 %", bl: "en 39 publicaciones", ses: "3.600", cons: "9", co: true },
+  { n: "Instagram", fn: "Comunidad", kl: "Guardados y compartidos", big: "4,1 %", bl: "sobre el alcance", ses: "8.100", cons: "2" },
+  { n: "TikTok", fn: "Descubrimiento", kl: "Espectadores por video", big: "3.850", bl: "de promedio en 65 videos", ses: "11.200", cons: "0" },
+  { n: "Facebook", fn: "Institucional", kl: "Sesiones derivadas al sitio", big: "3.100", bl: "su indicador de función", ses: "3.100", cons: "3", co: true },
+  { n: "X", fn: "Conversación", kl: "Interacciones por impresión", big: "2,6 %", bl: "en 39 publicaciones", ses: "1.000", cons: "0" }
+];
+
+/* ---------- Tabla maestra de resultados ---------- */
+window.SIM = {
+  social: [ // sesiones al sitio (K85), KPI de función, consultas empresariales (K70)
+    { red: "TikTok",    ses: 11200, kpi: "3.850 espectadores por video", cons: 0, fn: "Descubrimiento" },
+    { red: "Instagram", ses: 8100,  kpi: "4,1 % guardados y compartidos sobre alcance", cons: 2, fn: "Comunidad" },
+    { red: "LinkedIn",  ses: 3600,  kpi: "3,8 % interacciones sobre impresiones", cons: 9, fn: "Autoridad" },
+    { red: "Facebook",  ses: 3100,  kpi: "26 de 26 publicaciones", cons: 3, fn: "Institucional" },
+    { red: "X",         ses: 1000,  kpi: "2,6 % interacciones sobre impresiones", cons: 0, fn: "Conversación" }
+  ],
+  sources: [ // sesiones por fuente: Empresas (e) y Profesionales (p)
+    { f: "Redes orgánicas", e: 5400, p: 21600 },
+    { f: "SEO", e: 3120, p: 7520 },
+    { f: "Meta Ads Profesionales", e: 0, p: 4600 },
+    { f: "Google Ads", e: 3640, p: 260 },
+    { f: "Directo, referidos y email", e: 1820, p: 1710 },
+    { f: "Meta Ads Empresas", e: 2600, p: 0 },
+    { f: "LinkedIn Ads", e: 210, p: 0 }
+  ]
+};
+
+/* ---------- Cotización vigente (Entrega final, punto 18) ---------- */
+window.BUDGET = {
+  items: [
+    { n: "Redes y contenidos", v: 2990, c: "#22284F", light: true },
+    { n: "Sitio web y medición", v: 2540, c: "#5A6290", light: true },
+    { n: "Gestión de campañas", v: 270, c: "#AAB4CE" },
+    { n: "Pauta en plataformas", v: 2140, c: "#F25C3E", light: true },
+    { n: "Hosting y dominio", v: 60, c: "#201E1B", light: true }
+  ],
+  total: 8000
+};
+
+</script>
+<script>
+/* Visualizaciones en SVG/HTML propio: sin dependencias externas, funcionan sin conexión. */
+(function () {
+  const NS = "http://www.w3.org/2000/svg";
+  const fmt = n => n.toLocaleString("es-AR");
+  const pct = (a, b, d = 1) => (100 * a / b).toFixed(d).replace(".", ",") + " %";
+  const C = { azul: "#173B57", pet: "#2F6F6A", salvia: "#8FAF9F", marfil: "#F4F0E8", graf: "#24292D" };
+
+  function svg(w, h) {
+    const s = document.createElementNS(NS, "svg");
+    s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h);
+    s.style.fontFamily = "'Source Sans 3', sans-serif"; return s;
+  }
+  function el(tag, attrs, parent, text) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  /* Diagnóstico · tabla de presencia digital frente a competidores */
+  function bench() {
+    const host = document.getElementById("bench"); if (!host) return;
+    const B = window.BENCH, last = B.cols.length - 1;
+    let h = '<span class="ch rh"></span>' + B.cols.map((c, i) => `<span class="ch ${i === last ? "lu" : ""}">${c}</span>`).join("");
+    B.rows.forEach(r => {
+      h += `<span class="rh">${r.r}</span>` + r.v.map((v, i) => `<span class="${i === last ? "lu" : ""}">${v ? '<i class="y">✓</i>' : '<i class="n"></i>'}</span>`).join("");
+    });
+    host.innerHTML = h;
+  }
+
+  /* Redes: función, público, pilares, enfoque y frecuencia */
+  function nets() {
+    const host = document.getElementById("nets"); if (!host) return;
+    host.innerHTML = window.NETS.map(n => `<div class="net">
+      <div class="top" style="background:${n.c}"><span class="pri">${n.p}</span><div class="nm">${n.n}</div><div class="fn">${n.fn}</div></div>
+      <div class="row"><small>Público</small><span>${n.pub}</span></div>
+      <div class="row"><small>Pilares</small><span>${n.pil}</span></div>
+      <div class="row"><small>Enfoque</small><span>${n.foco}</span></div>
+      <div class="row"><small>Frecuencia</small><span class="fq">${n.fq}</span></div></div>`).join("");
+  }
+
+  /* Publicidad: cuatro campañas */
+  function ads() {
+    const host = document.getElementById("ads"); if (!host) return;
+    host.innerHTML = window.ADS.map(a => {
+      let wk = ""; for (let s = 1; s <= 13; s++) wk += `<i class="${s >= a.a && s <= a.b ? "on" : ""}"></i>`;
+      return `<div class="ad"><span class="pl">${a.pl}</span><span class="nm">${a.n}</span>
+        <span class="usd">USD ${fmt(a.usd)}</span>
+        <p class="it"><small>Público</small>${a.aud}</p>
+        <p class="it"><small>Destino</small>${a.dst}</p>
+        <p class="it"><small>Indicador</small>${a.kpi}</p>
+        <div class="wk">${wk}</div><div class="wkl"><span>S1</span><span>S${a.a} a S${a.b}</span><span>S13</span></div></div>`;
+    }).join("");
+    const note = document.createElement("p");
+    note.className = "ads-note";
+    note.innerHTML = `<span><b>USD 2.140</b> de inversión total</span><span><b>Semana 5</b> activación, con el sitio publicado y la medición verificada</span><span><b>Sin recargo</b> pagada por Lumera a cada plataforma</span>`;
+    host.after(note);
+  }
+
+  /* Resultados por red: el indicador principal según su función */
+  function rnets() {
+    const host = document.getElementById("rnets"); if (!host) return;
+    host.innerHTML = window.RNETS.map(r => `<div class="rn ${r.co ? "co" : ""}">
+      <span class="nm">${r.n}<small>${r.fn}</small></span>
+      <span class="zone">En la red</span>
+      <span class="kl">${r.kl}</span>
+      <span class="big">${r.big}</span><span class="bl">${r.bl}</span>
+      <span class="zone z2">Aporte al plan</span>
+      <span class="sm"><span>Sesiones al sitio</span><b>${r.ses}</b></span>
+      <span class="sm"><span>Consultas de empresas</span><b>${r.cons}</b></span></div>`).join("");
+  }
+
+  /* S15 · sesiones por fuente, separadas por recorrido */
+  function sources() {
+    const host = document.getElementById("ch-sources"); if (!host) return;
+    const data = window.SIM.sources, W = 785, rowH = 56, H = data.length * rowH;
+    const s = svg(W, H), x0 = 225, bw = 440, max = 27000;
+    data.forEach((d, i) => {
+      const y = i * rowH, tot = d.e + d.p;
+      el("text", { x: 0, y: y + 30, "font-size": 20, fill: C.graf, "font-weight": 600 }, s, d.f);
+      const we = bw * d.e / max, wp = bw * d.p / max;
+      const g = el("g", { class: "grow d" + Math.min(i + 1, 7), style: `transform-origin:${x0}px 0` }, s);
+      if (d.e) el("rect", { x: x0, y: y + 10, width: we, height: 28, fill: C.azul }, g);
+      if (d.p) el("rect", { x: x0 + we, y: y + 10, width: wp, height: 28, fill: C.salvia }, g);
+      el("text", { x: x0 + we + wp + 10, y: y + 31, "font-size": 20, "font-weight": 700, fill: C.azul, "font-family": "Lora, serif" }, s, fmt(tot));
+    });
+    host.appendChild(s);
+  }
+
+  /* S15 · embudos separados: Empresas y Profesionales */
+  function funnels() {
+    const step = (v, l, bg, w) => `<div class="grow" style="width:${w}%;background:${bg};color:${C.marfil};border-radius:6px;padding:7px 16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font-size:18px">${l}</span><b style="font:600 26px Lora,serif">${fmt(v)}</b></div>`;
+    const rate = r => `<div style="font-size:15px;color:#6b737a;padding:3px 0 3px 16px">↓ ${r}</div>`;
+    const e = document.getElementById("ch-funnel-e");
+    if (e) e.innerHTML =
+      step(16790, "sesiones de empresas", C.azul, 100) + rate(pct(7050, 16790, 0) + " ve un servicio") +
+      step(7050, "vieron un servicio", "#2a5574", 84) + rate(pct(31, 7050, 2) + " escribe") +
+      step(31, "contactos desde el sitio (formulario y WhatsApp)", C.pet, 70) + rate(pct(18, 31, 0) + " califica") +
+      step(18, "leads calificados del sitio", "#245a56", 56) +
+      `<p style="margin-top:10px;font:500 22px/1.3 Lora,serif;color:${C.azul}">+ 6 por mensajes en redes = <b style="color:${C.pet}">24 leads</b></p>`;
+    const p = document.getElementById("ch-funnel-p");
+    if (p) p.innerHTML = `<div style="display:flex;align-items:center;gap:14px;font-size:19px;color:#3f454a">
+      <span style="background:${C.salvia};border-radius:6px;padding:7px 14px;color:${C.graf}"><b style="font:600 26px Lora,serif">35.690</b> sesiones</span>
+      <span style="color:${C.pet}">→ ${pct(586, 35690, 1)} →</span>
+      <span style="background:${C.pet};border-radius:6px;padding:7px 14px;color:${C.marfil}"><b style="font:600 26px Lora,serif">586</b> postulaciones</span>
+      <span style="font-size:16px;color:#6b737a">no son leads</span></div>`;
+  }
+
+  /* S19 · gráfico de torta del presupuesto */
+  function pie() {
+    const host = document.getElementById("ch-pie"); if (!host) return;
+    const items = window.BUDGET.items, total = items.reduce((a, b) => a + b.v, 0);
+    // porcentajes con 2 decimales por método de mayor resto: suman exactamente 100,00
+    const raw = items.map(it => it.v * 10000 / total), fl = raw.map(Math.floor);
+    const rest = 10000 - fl.reduce((a, b) => a + b, 0);
+    raw.map((r, i) => [r - Math.floor(r), i]).sort((a, b) => b[0] - a[0]).slice(0, rest).forEach(([, i]) => fl[i]++);
+    items.forEach((it, i) => it.pct = fl[i] / 100);
+    const S = 600, R = 290, cx = S / 2, cy = S / 2;
+    const s = svg(S, S); s.setAttribute("role", "img");
+    s.setAttribute("aria-label", "Distribución del presupuesto: " + items.map(i => `${i.n} USD ${i.v} (${i.pct.toFixed(2)} %)`).join(", "));
+    let a0 = -Math.PI / 2;
+    items.forEach((it, i) => {
+      const a1 = a0 + 2 * Math.PI * it.v / total, large = a1 - a0 > Math.PI ? 1 : 0;
+      const d = `M${cx},${cy} L${cx + R * Math.cos(a0)},${cy + R * Math.sin(a0)} A${R},${R} 0 ${large} 1 ${cx + R * Math.cos(a1)},${cy + R * Math.sin(a1)} Z`;
+      el("path", { d, fill: it.c, stroke: "#F7F3EC", "stroke-width": 3, class: "pie-slice", style: `opacity:0;transition:opacity .5s ${0.1 + i * 0.1}s` }, s);
+      if (it.pct >= 10) {
+        const am = (a0 + a1) / 2, rr = R * 0.62, x = cx + rr * Math.cos(am), y = cy + rr * Math.sin(am);
+        el("text", { x, y: y - 4, "text-anchor": "middle", "font-size": 30, "font-weight": 800, "font-family": "Manrope, sans-serif", fill: "#F7F3EC" }, s, it.pct.toFixed(2).replace(".", ",") + " %");
+        el("text", { x, y: y + 26, "text-anchor": "middle", "font-size": 18, "font-weight": 600, "font-family": "Inter, sans-serif", fill: "rgba(247,243,236,.85)" }, s, it.n);
+      }
+      a0 = a1;
+    });
+    // centro con el total
+    el("circle", { cx, cy, r: 0 }, s);
+    host.appendChild(s);
+    const small = document.createElement("p");
+    small.style.cssText = "text-align:center;font-size:17px;color:#5a5866;margin-top:10px";
+    small.textContent = items.filter(i => i.pct < 10).map(i => `${i.n}: ${i.pct.toFixed(2).replace(".", ",")} %`).join(" · ") + " · Total: 100,00 %";
+    host.appendChild(small);
+  }
+
+  window.buildCharts = function () { bench(); nets(); ads(); rnets(); sources(); funnels(); pie(); };
+})();
+
+</script>
+<script>
+/* Motor de la presentación: escala 16:9, navegación, notas, índice, videos, cronómetro. */
+(function () {
+  const stage = document.getElementById("stage");
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const N = slides.length;
+  let cur = 0;
+
+  /* ---------- Escala ---------- */
+  function fit() {
+    const k = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${k})`;
+  }
+  window.addEventListener("resize", fit); fit();
+
+  /* ---------- Barra narrativa ---------- */
+  const rail = document.getElementById("rail");
+  window.BLOCKS.forEach((name, i) => {
+    const b = document.createElement("button");
+    b.className = "rail-step"; b.type = "button";
+    b.innerHTML = `<span class="lbl">${name}</span><span class="bar"><i></i></span>`;
+    b.setAttribute("aria-label", "Ir a: " + name);
+    b.addEventListener("click", () => go(slides.findIndex(s => +s.dataset.block === i)));
+    rail.appendChild(b);
+  });
+
+  /* ---------- Videos ---------- */
+  document.querySelectorAll(".video-box").forEach(box => {
+    const src = box.dataset.src;
+    box.innerHTML = `
+      <div class="video-ph">
+        <span class="vp-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+        <span class="vp-name">${box.dataset.name}</span>
+        <span class="pending">Video pendiente<code>${src}</code></span>
+        <label class="try">Probar un archivo<input type="file" accept="video/*"></label>
+      </div>
+      <button class="video-fs" type="button">Pantalla completa</button>`;
+    if (box.dataset.poster) {
+      box.classList.add("has-poster");
+      box.style.backgroundImage = `url(${box.dataset.poster})`;
+    }
+    const v = document.createElement("video");
+    if (box.dataset.poster) v.poster = box.dataset.poster;
+    v.controls = true; v.preload = "metadata"; v.playsInline = true;
+    v.style.display = "none";
+    v.addEventListener("loadedmetadata", () => { v.style.display = "block"; box.classList.add("has-video"); });
+    v.addEventListener("error", () => { box.classList.remove("has-video"); v.style.display = "none"; }, true);
+    v.src = src;
+    box.prepend(v);
+    box.querySelector("input").addEventListener("change", e => {
+      const f = e.target.files[0]; if (!f) return;
+      v.src = URL.createObjectURL(f); v.load();
+    });
+    box.querySelector(".video-fs").addEventListener("click", () => {
+      const req = v.requestFullscreen || v.webkitRequestFullscreen;
+      if (req) Promise.resolve(req.call(v)).catch(() => {});
+    });
+    ["keydown", "click"].forEach(t => v.addEventListener(t, e => e.stopPropagation()));
+  });
+  /* ---------- Espacios para imágenes pendientes ---------- */
+  document.querySelectorAll(".slot").forEach(slot => {
+    const img = new Image();
+    img.alt = slot.dataset.label;
+    img.onload = () => { slot.classList.remove("empty"); slot.innerHTML = ""; slot.appendChild(img); };
+    img.onerror = () => {
+      slot.classList.add("empty");
+      slot.innerHTML = `<span class="slot-name">${slot.dataset.label}</span><span class="pending">Imagen pendiente<code>${slot.dataset.asset}</code></span>`;
+    };
+    img.src = slot.dataset.asset;
+  });
+  function pauseAll() { document.querySelectorAll("video").forEach(v => { if (!v.paused) v.pause(); }); }
+
+  /* ---------- Navegación ---------- */
+  function go(i, fromHash) {
+    if (i < 0 || i >= N || isNaN(i)) return;
+    if (i !== cur) pauseAll();
+    slides[cur].classList.remove("active");
+    slides[cur].setAttribute("aria-hidden", "true");
+    cur = i;
+    const s = slides[cur];
+    s.classList.add("active"); s.removeAttribute("aria-hidden");
+    document.body.dataset.chrome = s.dataset.chrome || "lum";
+    document.getElementById("counter").textContent = `${cur + 1} / ${N}`;
+    const step = +s.dataset.block;
+    const inStep = slides.filter(x => +x.dataset.block === step);
+    const pos = inStep.indexOf(s);
+    rail.querySelectorAll(".rail-step").forEach((b, k) => {
+      b.classList.toggle("done", k < step);
+      b.classList.toggle("current", k === step);
+      b.querySelector("i").style.width = k === step ? `${((pos + 1) / inStep.length) * 100}%` : "";
+      if (k === step) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    });
+    if (!fromHash) { try { history.replaceState(null, "", "#" + s.id); } catch (e) { location.hash = s.id; } }
+    renderNotes();
+    document.querySelectorAll(".ov-item").forEach((b, k) => b.classList.toggle("cur", k === cur));
+  }
+  const next = () => go(cur + 1), prev = () => go(cur - 1);
+  document.getElementById("b-next").addEventListener("click", next);
+  document.getElementById("b-prev").addEventListener("click", prev);
+
+  /* ---------- Notas ---------- */
+  const notes = document.getElementById("notes");
+  const mmss = t => `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`;
+  const elapsedPlan = i => slides.slice(0, i).reduce((a, s) => a + (window.NOTES[s.id]?.t || 0), 0);
+  function renderNotes() {
+    const s = slides[cur], n = window.NOTES[s.id] || {};
+    const nx = slides[cur + 1];
+    const ve = window.VIDEO_EST[s.id];
+    notes.innerHTML = `
+      <button class="n-close" type="button">Cerrar (N)</button>
+      <h4>Diapositiva ${cur + 1} de ${N} · ${window.BLOCKS[+s.dataset.block]}</h4>
+      <p class="n-title">${s.dataset.title}</p>
+      <div class="n-meta"><span class="n-time">⏱ ${mmss(n.t || 0)}${ve ? ` (incluye video ≈ ${ve} s)` : ""}</span><span>Inicio previsto ${mmss(elapsedPlan(cur))}</span><span>Expone: ${n.who || "—"}</span></div>
+      <h4>Mensaje central</h4><p>${n.msg || ""}</p>
+      <h4>Guion</h4><p class="n-say">${n.say || ""}</p>
+      <h4>Transición</h4><p>${n.next || ""}</p>
+      <p class="n-next">Siguiente: ${nx ? nx.dataset.title : "—"}</p>`;
+    notes.querySelector(".n-close").addEventListener("click", toggleNotes);
+  }
+  function toggleNotes() {
+    const on = document.body.classList.toggle("notes-open");
+    document.getElementById("b-notes").setAttribute("aria-pressed", on);
+  }
+  document.getElementById("b-notes").addEventListener("click", toggleNotes);
+
+  /* ---------- Índice ---------- */
+  const grid = document.getElementById("ov-grid");
+  let total = 0;
+  slides.forEach((s, i) => {
+    const n = window.NOTES[s.id] || {}; total += n.t || 0;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "ov-item";
+    b.innerHTML = `<span class="ov-n">${i + 1} · ${window.BLOCKS[+s.dataset.block]}</span><span class="ov-t">${s.dataset.title}</span>
+      <span class="ov-d"><span>${n.who || ""}</span><span>${mmss(n.t || 0)}${s.dataset.video ? " · video" : ""}${s.dataset.sim ? " · simulación" : ""}</span></span>`;
+    b.addEventListener("click", () => { go(i); toggleOverview(false); });
+    grid.appendChild(b);
+  });
+  document.getElementById("ov-total").textContent = `Tiempo planificado: ${mmss(total)} + ${mmss(1200 - total)} de margen para transiciones = 20:00`;
+  function toggleOverview(force) {
+    const on = document.body.classList.toggle("overview-open", force);
+    document.getElementById("b-ov").setAttribute("aria-pressed", on);
+    if (on) grid.children[cur].focus();
+  }
+  document.getElementById("b-ov").addEventListener("click", () => toggleOverview());
+
+  /* ---------- Pantalla completa ---------- */
+  function toggleFS() {
+    const d = document, root = d.documentElement;
+    const isFS = d.fullscreenElement || d.webkitFullscreenElement;
+    try {
+      const p = isFS ? (d.exitFullscreen || d.webkitExitFullscreen).call(d) : (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+      Promise.resolve(p).catch(() => flash("Este visor no permite pantalla completa. Abrí la presentación en el navegador."));
+    } catch (e) { flash("Este visor no permite pantalla completa. Abrí la presentación en el navegador."); }
+  }
+  document.getElementById("b-fs").addEventListener("click", toggleFS);
+  document.addEventListener("fullscreenchange", () => document.getElementById("b-fs").setAttribute("aria-pressed", !!document.fullscreenElement));
+
+  /* ---------- Cronómetro ---------- */
+  let t0 = null, tick = null;
+  function toggleTimer() {
+    const on = document.body.classList.toggle("timing");
+    document.getElementById("b-timer").setAttribute("aria-pressed", on);
+    if (on) {
+      t0 = Date.now();
+      tick = setInterval(() => {
+        const s = Math.floor((Date.now() - t0) / 1000);
+        const el = document.getElementById("timer");
+        el.textContent = mmss(s).padStart(5, "0");
+        el.style.color = s > 1200 ? "#F25C3E" : "";
+      }, 500);
+    } else { clearInterval(tick); document.getElementById("timer").textContent = "00:00"; }
+  }
+  document.getElementById("b-timer").addEventListener("click", toggleTimer);
+
+  /* ---------- Aviso ---------- */
+  const hint = document.getElementById("hint");
+  function flash(msg) { if (msg) hint.textContent = msg; hint.classList.add("show"); setTimeout(() => hint.classList.remove("show"), 3200); }
+
+  /* ---------- Teclado ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.target.closest && e.target.closest("video, input")) return;
+    if (document.body.classList.contains("overview-open")) {
+      if (e.key === "Escape" || e.key.toLowerCase() === "o") { toggleOverview(false); e.preventDefault(); }
+      return;
+    }
+    switch (e.key) {
+      case "ArrowRight": case "PageDown": case " ": next(); e.preventDefault(); break;
+      case "ArrowLeft": case "PageUp": prev(); e.preventDefault(); break;
+      case "Home": go(0); break;
+      case "End": go(N - 1); break;
+      case "n": case "N": toggleNotes(); break;
+      case "o": case "O": toggleOverview(); break;
+      case "f": case "F": toggleFS(); break;
+      case "t": case "T": toggleTimer(); break;
+      case "p": case "P": document.body.classList.toggle("hide-pending"); break;
+      case "Escape": if (document.body.classList.contains("notes-open")) toggleNotes(); break;
+    }
+  });
+
+  /* ---------- Inicio ---------- */
+  window.buildCharts();
+  slides.forEach(s => s.setAttribute("aria-hidden", "true"));
+  const fromHash = () => { const i = slides.findIndex(s => "#" + s.id === location.hash); return i >= 0 ? i : 0; };
+  cur = fromHash(); go(cur, true); slides[cur].classList.add("active");
+  window.addEventListener("hashchange", () => { const i = fromHash(); if (i !== cur) go(i, true); });
+  setTimeout(() => flash(), 600);
+})();
+
+</script>
+</body>
+</html>
